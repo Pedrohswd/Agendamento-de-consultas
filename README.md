@@ -32,6 +32,6 @@ Este projeto é uma aplicação web destinada ao agendamento de consultas médic
 ## Autor
 
 Este projeto foi desenvolvido por:
-      Pedro Henrique
-      Emilly Santos
-      Eduardo Candido
+* Pedro Henrique - Pedrohswd
+* Eduardo Candido - educanprog
+* Emilly Santos - emilly-sdg
