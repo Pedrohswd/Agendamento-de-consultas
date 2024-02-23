@@ -16,7 +16,7 @@ Este projeto é uma aplicação web destinada ao agendamento de consultas médic
 
 ## Tecnologias Utilizadas
 
-- **Frontend**: Angular com componentes PrimeNG
+- **Frontend**: Angular
 - **Backend**: Spring Boot
 - **Banco de Dados**: Postgre
 - **Autenticação**: JSON Web Tokens (JWT)
