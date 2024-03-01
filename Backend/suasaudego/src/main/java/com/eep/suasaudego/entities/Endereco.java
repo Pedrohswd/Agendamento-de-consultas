@@ -14,6 +14,10 @@ public class Endereco {
     private String estado;
     private String cep;
 
+    @OneToOne
+    @JoinColumn(name = "pessoa_id", referencedColumnName = "id")
+    private Pessoa pessoa;
+
 
     public Endereco() {}
 

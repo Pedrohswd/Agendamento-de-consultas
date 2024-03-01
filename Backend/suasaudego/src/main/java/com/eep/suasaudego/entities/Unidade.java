@@ -26,10 +26,11 @@ public class Unidade {
     @JoinColumn(name = "endereco_id", referencedColumnName = "id")
     private Endereco endereco;
     @OneToMany(mappedBy = "unidade")
-    private Set<Funcionario> funcionarios = new HashSet<>();
-
+    private Set<Usuario> usuario = new HashSet<>();
     @JsonIgnore
     @OneToMany(mappedBy = "unidadeMedico")
     private List<UnidadeMedico> listMedico = new ArrayList<>();
+
+
 
 }
