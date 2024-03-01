@@ -30,7 +30,7 @@ public class Pessoa {
     @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL)
     private List<Usuario> usuarios;
 
-    @OneToMany(mappedBy = "agendamento", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "pessoa")
     private List<Agendamento> agendamentos = new ArrayList<>();
 
 

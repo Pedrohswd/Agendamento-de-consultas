@@ -4,24 +4,23 @@ import jakarta.persistence.*;
 
 import java.util.Date;
 @Entity
-
 public class Agendamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Date dataAgendada;
     @ManyToOne
-    @JoinColumn(name = "pessoa_id", referencedColumnName = "id_pessoa")
-    private Pessoa pessoaAgendada;
+    @JoinColumn(name = "pessoa_id")
+    private Pessoa pessoa;
     private String Observações;
     @ManyToOne
-    @JoinColumn(name = "consulta_id", referencedColumnName = "id_consulta")
+    @JoinColumn(name = "consulta_id")
     private Consulta consulta;
 
     public Agendamento(Long id, Date dataAgendada, Pessoa pessoaAgendada, String observações, Consulta consulta) {
         this.id = id;
         this.dataAgendada = dataAgendada;
-        this.pessoaAgendada = pessoaAgendada;
+        this.pessoa = pessoaAgendada;
         Observações = observações;
         this.consulta = consulta;
     }
@@ -45,12 +44,12 @@ public class Agendamento {
         this.dataAgendada = dataAgendada;
     }
 
-    public Pessoa getPessoaAgendada() {
-        return pessoaAgendada;
+    public Pessoa getPessoa() {
+        return pessoa;
     }
 
-    public void setPessoaAgendada(Pessoa pessoaAgendada) {
-        this.pessoaAgendada = pessoaAgendada;
+    public void setPessoa(Pessoa pessoaAgendada) {
+        this.pessoa = pessoaAgendada;
     }
 
     public String getObservações() {

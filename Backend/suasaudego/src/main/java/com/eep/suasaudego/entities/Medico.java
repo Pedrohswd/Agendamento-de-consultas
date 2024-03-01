@@ -18,7 +18,7 @@ public class Medico {
     private String crm;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "unidadeMedico")
+    @OneToMany(mappedBy = "medico")
     private List<UnidadeMedico> listUnidade = new ArrayList<>();
 
     public Medico(){

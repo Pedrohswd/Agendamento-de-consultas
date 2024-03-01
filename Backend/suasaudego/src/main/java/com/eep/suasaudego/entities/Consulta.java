@@ -18,7 +18,7 @@ public class Consulta {
     @ManyToOne
     @JoinColumn(name = "medico_id")
     private Medico medico;
-    @OneToMany(mappedBy = "agendamento")
+    @OneToMany(mappedBy = "consulta")
     private Set<Agendamento> agendamentos = new HashSet<>();
 
     public Consulta() {

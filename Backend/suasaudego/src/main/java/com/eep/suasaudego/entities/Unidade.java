@@ -25,10 +25,11 @@ public class Unidade {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "endereco_id", referencedColumnName = "id")
     private Endereco endereco;
+    @JsonIgnore
     @OneToMany(mappedBy = "unidade")
     private Set<Usuario> usuario = new HashSet<>();
     @JsonIgnore
-    @OneToMany(mappedBy = "unidadeMedico")
+    @OneToMany(mappedBy = "unidade")
     private List<UnidadeMedico> listMedico = new ArrayList<>();
 
 
