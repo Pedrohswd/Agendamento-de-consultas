@@ -13,17 +13,17 @@ import java.util.stream.Collectors;
 public class Pessoa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Integer id;
-    protected String nome;
+    private Integer id;
+    private String nome;
     @Column(unique = true)
-    protected String cpf;
+    private String cpf;
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "PERFIS")
-    protected Set<Integer> perfis = new HashSet<>();
+    private Set<Integer> perfis = new HashSet<>();
     @CollectionTable(name = "SEXO")
-    protected Integer sexo;
+    private Integer sexo;
     @JsonFormat(pattern = "dd/MM/yyyy")
-    protected Date dataNascimento;
+    private Date dataNascimento;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "endereco_id", referencedColumnName = "id")
     private Endereco endereco;
@@ -36,7 +36,7 @@ public class Pessoa {
 
 
     public Pessoa() {
-        super();
+
     }
 
     public Pessoa(Integer id, String nome, String cpf) {
