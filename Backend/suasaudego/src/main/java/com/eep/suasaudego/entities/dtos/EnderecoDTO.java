@@ -1,11 +1,11 @@
-package com.eep.suasaudego.entities;
+package com.eep.suasaudego.entities.dtos;
 
-import jakarta.persistence.*;
+import com.eep.suasaudego.entities.Endereco;
+import com.eep.suasaudego.entities.Pessoa;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 
-@Entity
-public class Endereco {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class EnderecoDTO {
     private Long id;
     private String rua;
     private String numero;
@@ -14,21 +14,19 @@ public class Endereco {
     private String estado;
     private String cep;
 
-    @OneToOne
-    @JoinColumn(name = "pessoa_id", referencedColumnName = "id")
     private Pessoa pessoa;
 
 
-    public Endereco() {
+    public EnderecoDTO() {
     }
 
-    public Endereco(Long id, String rua, String cidade, String estado, String cep, String numero, String complemento) {
-        this.id = id;
-        this.rua = rua;
-        this.cidade = cidade;
-        this.estado = estado;
-        this.cep = cep;
-        this.numero = numero;
+    public EnderecoDTO(Endereco endereco) {
+        this.id = endereco.getId();
+        this.rua = endereco.getRua();
+        this.cidade = endereco.getCidade();
+        this.estado = endereco.getEstado();
+        this.cep = endereco.getCep();
+        this.numero = endereco.getNumero();
     }
 
     public Long getId() {

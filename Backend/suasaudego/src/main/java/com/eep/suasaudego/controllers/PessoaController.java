@@ -1,14 +1,20 @@
 package com.eep.suasaudego.controllers;
 
 import com.eep.suasaudego.entities.Pessoa;
+import com.eep.suasaudego.entities.dtos.PessoaDTO;
 import com.eep.suasaudego.services.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(value = "/pessoa")
@@ -17,9 +23,18 @@ public class PessoaController {
     private PessoaService service;
 
     @GetMapping
-    public ResponseEntity<List<Pessoa>>findAll(){
+    public ResponseEntity<List<PessoaDTO>> findAll(){
+        List<Pessoa> list = service.findAll();
+        List<PessoaDTO> listDTO = list.stream().map(obj -> new PessoaDTO(obj)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listDTO);
+    }
 
-        return null;
+    @PostMapping
+    public ResponseEntity<PessoaDTO> create(@RequestBody PessoaDTO pessoaDTO){
+        Pessoa newPessoa = service.create(pessoaDTO);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(newPessoa.getId()).toUri();
+
+        return ResponseEntity.created(uri).build();
     }
 
 

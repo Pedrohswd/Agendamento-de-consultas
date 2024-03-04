@@ -1,36 +1,39 @@
-package com.eep.suasaudego.entities;
+package com.eep.suasaudego.entities.dtos;
 
+import com.eep.suasaudego.entities.Pessoa;
+import com.eep.suasaudego.entities.Unidade;
+import com.eep.suasaudego.entities.Usuario;
 import com.eep.suasaudego.entities.enums.Perfil;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
 
-import java.util.Set;
-import java.util.stream.Collectors;
 
-@Entity
-public class Usuario {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UsuarioDTO {
+
     private Integer id;
-    @Column(unique = true)
+
     private String email;
     private String senha;
-    @ManyToOne
-    @JoinColumn(name = "unidade_id")
+
     private Unidade unidade;
-    @ManyToOne
-    @JoinColumn(name = "pessoa_id")
+
     private Pessoa pessoa;
-    @CollectionTable(name = "PERFIS")
+
     private Integer perfil;
 
-    public Usuario() {
+    public UsuarioDTO() {
     }
 
-    public Usuario(Integer id, String email, String senha) {
+    public UsuarioDTO(Integer id, String email, String senha) {
         this.id = id;
         this.email = email;
         this.senha = senha;
+    }
+
+    public UsuarioDTO(Usuario usuario){
+        this.id= usuario.getId();
+        this.email = usuario.getEmail();
+        this.senha= usuario.getSenha();
+        this.perfil = usuario.getPerfis().getCodigo();
+        this.unidade = usuario.getUnidade();
     }
 
     public Integer getId() {

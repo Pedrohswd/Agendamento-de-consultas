@@ -1,9 +1,11 @@
 package com.eep.suasaudego.entities;
 
+import com.eep.suasaudego.entities.dtos.PessoaDTO;
 import com.eep.suasaudego.entities.enums.Perfil;
 import com.eep.suasaudego.entities.enums.Sexo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -17,13 +19,11 @@ public class Pessoa {
     private String nome;
     @Column(unique = true)
     private String cpf;
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "PERFIS")
-    private Set<Integer> perfis = new HashSet<>();
+
     @CollectionTable(name = "SEXO")
     private Integer sexo;
     @JsonFormat(pattern = "dd/MM/yyyy")
-    private Date dataNascimento;
+    private String dataNascimento;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "endereco_id", referencedColumnName = "id")
     private Endereco endereco;
@@ -34,15 +34,23 @@ public class Pessoa {
     private List<Agendamento> agendamentos = new ArrayList<>();
 
 
-
     public Pessoa() {
 
     }
 
-    public Pessoa(Integer id, String nome, String cpf) {
+    public Pessoa(Integer id, String nome, String cpf, String dataNascimento, Integer sexo) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
+        this.dataNascimento = dataNascimento;
+        this.sexo = sexo;
+    }
+
+    public Pessoa(PessoaDTO obj){
+        this.id = obj.getId();
+        this.nome = obj.getNome();
+        this.cpf = obj.getCpf();
+        this.dataNascimento = obj.getDataNascimento();
     }
 
     public Integer getId() {
@@ -69,24 +77,32 @@ public class Pessoa {
         this.cpf = cpf;
     }
 
-    public Set<Perfil> getPerfis() {
-        return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
-    }
-
-    public void addPerfil(Perfil perfil) {
-        this.perfis.add(perfil.getCodigo());
+    public Integer getSexo() {
+        return sexo;
     }
 
     public void addSexo(Sexo sexo) {
         this.sexo = (sexo.getCodigo());
     }
 
-    public Date getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
+    }
+
+    public void setSexo(Integer sexo) {
+        this.sexo = sexo;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 
     @Override
