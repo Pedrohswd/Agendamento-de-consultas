@@ -1,5 +1,6 @@
 package com.eep.suasaudego.entities;
 
+import com.eep.suasaudego.entities.dtos.EnderecoDTO;
 import jakarta.persistence.*;
 
 @Entity
@@ -30,6 +31,15 @@ public class Endereco {
         this.cep = cep;
         this.numero = numero;
     }
+    public Endereco(EnderecoDTO endereco) {
+        this.id = endereco.getId();
+        this.rua = endereco.getRua();
+        this.cidade = endereco.getCidade();
+        this.estado = endereco.getEstado();
+        this.cep = endereco.getCep();
+        this.numero = endereco.getNumero();
+    }
+
 
     public Long getId() {
         return id;

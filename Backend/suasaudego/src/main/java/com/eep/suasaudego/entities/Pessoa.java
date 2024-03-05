@@ -51,6 +51,8 @@ public class Pessoa {
         this.nome = obj.getNome();
         this.cpf = obj.getCpf();
         this.dataNascimento = obj.getDataNascimento();
+        Endereco endereco = new Endereco(obj.getEndereco());
+        this.setEndereco(endereco);
     }
 
     public Integer getId() {

@@ -1,7 +1,9 @@
 package com.eep.suasaudego.services;
 
+import com.eep.suasaudego.entities.Endereco;
 import com.eep.suasaudego.entities.Pessoa;
 import com.eep.suasaudego.entities.dtos.PessoaDTO;
+import com.eep.suasaudego.repositories.EnderecoRepository;
 import com.eep.suasaudego.repositories.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +15,8 @@ import java.util.Optional;
 public class PessoaService {
     @Autowired
     private PessoaRepository pessoaRepository;
-
+    @Autowired
+    private EnderecoRepository enderecoRepository;
     public List<Pessoa> findAll() {
         List<Pessoa> list = pessoaRepository.findAll();
         return list;
@@ -21,7 +24,14 @@ public class PessoaService {
 
     public Pessoa create(PessoaDTO pessoaDTO) {
         pessoaDTO.setId(null);
+        pessoaDTO.getEndereco().setId(null);
         Pessoa pessoa = new Pessoa(pessoaDTO);
-        return pessoaRepository.save(pessoa);
+        pessoa = pessoaRepository.save(pessoa);
+        enderecoRepository.save(pessoa.getEndereco());
+        return pessoa;
+    }
+
+    public Pessoa update(PessoaDTO pessoaDTO) {
+        return null;
     }
 }
