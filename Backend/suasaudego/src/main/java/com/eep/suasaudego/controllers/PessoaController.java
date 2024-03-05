@@ -19,6 +19,12 @@ public class PessoaController {
     @Autowired
     private PessoaService service;
 
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<PessoaDTO> findById(@PathVariable Integer id) {
+        Pessoa obj = service.findByID(id);
+        return ResponseEntity.ok().body(new PessoaDTO(obj));
+    }
+
     @GetMapping
     public ResponseEntity<List<PessoaDTO>> findAll(){
         List<Pessoa> list = service.findAll();
