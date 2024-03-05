@@ -34,10 +34,10 @@ public class PessoaController {
         return ResponseEntity.created(uri).build();
     }
 
-    @PutMapping
-    public ResponseEntity<PessoaDTO> update(@RequestBody PessoaDTO pessoaDTO){
-        Pessoa updatePessoa = service.update(pessoaDTO);
-        return null;
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<PessoaDTO> update(@PathVariable Integer id, @RequestBody PessoaDTO pessoaDTO){
+        Pessoa updatePessoa = service.update(id,pessoaDTO);
+        return ResponseEntity.ok().body(new PessoaDTO(updatePessoa));
     }
 
 }

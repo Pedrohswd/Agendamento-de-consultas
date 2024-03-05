@@ -17,6 +17,7 @@ public class PessoaService {
     private PessoaRepository pessoaRepository;
     @Autowired
     private EnderecoRepository enderecoRepository;
+
     public List<Pessoa> findAll() {
         List<Pessoa> list = pessoaRepository.findAll();
         return list;
@@ -31,7 +32,19 @@ public class PessoaService {
         return pessoa;
     }
 
-    public Pessoa update(PessoaDTO pessoaDTO) {
-        return null;
+    public Pessoa update(Integer id, PessoaDTO pessoaDTO) {
+        pessoaDTO.setId(id);
+        Pessoa pessoaOld = findByID(id);
+        pessoaDTO.getEndereco().setId(pessoaOld.getEndereco().getId());
+        pessoaOld = new Pessoa(pessoaDTO);
+        pessoaRepository.save(pessoaOld);
+        enderecoRepository.save(pessoaOld.getEndereco());
+        return pessoaOld;
+    }
+
+
+    public Pessoa findByID(Integer id) {
+        Optional<Pessoa> obj = pessoaRepository.findById(id);
+        return obj.orElseThrow();
     }
 }
