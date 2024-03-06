@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, NgForm, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, NgForm, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseAlertType } from '@fuse/components/alert';
 import { AuthService } from 'app/core/auth/auth.service';
+import { Pessoa } from 'app/models/pessoa';
 
 @Component({
     selector     : 'auth-sign-up',
@@ -19,15 +20,44 @@ export class AuthSignUpComponent implements OnInit
         type   : 'success',
         message: ''
     };
-    signUpForm: UntypedFormGroup;
     showAlert: boolean = false;
+
+    pessoa: Pessoa = {
+        id: '',
+        nome: '',
+        cpf: '',
+        dataNascimento: '',
+        endereco: {
+            id: '',
+            rua: '',
+            numero: '',
+            complemento: '',
+            cidade: '',
+            cep: ''
+        }
+    };
+
+    nome: FormControl = new FormControl(null, Validators.minLength(5));
+
+    cpf: FormControl = new FormControl(null, Validators.required);
+
+    dataNascimento: FormControl = new FormControl(null, Validators.required);
+
+    rua: FormControl = new FormControl(null, Validators.required);
+
+    numero: FormControl = new FormControl(null, Validators.required);
+
+    complemento: FormControl = new FormControl(null, Validators.required);
+
+    cidade: FormControl = new FormControl(null, Validators.required);
+
+    cep: FormControl = new FormControl(null, Validators.required); 
 
     /**
      * Constructor
      */
     constructor(
         private _authService: AuthService,
-        private _formBuilder: UntypedFormBuilder,
         private _router: Router
     )
     {
@@ -43,15 +73,15 @@ export class AuthSignUpComponent implements OnInit
     ngOnInit(): void
     {
         // Create the form
-        this.signUpForm = this._formBuilder.group({
-                name      : ['', Validators.required],
-                email     : ['', [Validators.required, Validators.email]],
-                password  : ['', Validators.required],
-                company   : [''],
-                agreements: ['', Validators.requiredTrue]
-            }
-        );
+        
     }
+
+    validaCampos(): boolean {
+        return this.nome.valid && this.cpf.valid
+          && this.dataNascimento.valid && this.cidade.valid
+          && this.rua.valid && this.cep.valid
+          
+      }
 
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
@@ -62,20 +92,7 @@ export class AuthSignUpComponent implements OnInit
      */
     signUp(): void
     {
-        // Do nothing if the form is invalid
-        if ( this.signUpForm.invalid )
-        {
-            return;
-        }
-
-        // Disable the form
-        this.signUpForm.disable();
-
-        // Hide the alert
-        this.showAlert = false;
-
-        // Sign up
-        this._authService.signUp(this.signUpForm.value)
+        this._authService.signUp(this.pessoa)
             .subscribe(
                 (response) => {
 
@@ -85,7 +102,7 @@ export class AuthSignUpComponent implements OnInit
                 (response) => {
 
                     // Re-enable the form
-                    this.signUpForm.enable();
+                    //this.signUpForm.enable();
 
                     // Reset the form
                     this.signUpNgForm.resetForm();

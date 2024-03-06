@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(value = "/pessoa")
+@CrossOrigin(origins = "http://localhost:4200")
 public class PessoaController {
     @Autowired
     private PessoaService service;
