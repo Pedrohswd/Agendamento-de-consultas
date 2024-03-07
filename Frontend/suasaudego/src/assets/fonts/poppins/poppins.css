@@ -1,0 +1,17 @@
+@font-face {
+    font-family: 'Poppins var';
+    font-weight: 100 900;
+    font-display: swap;
+    font-style: normal;
+    font-named-instance: 'Regular';
+    src: url("Poppins-Regular.ttf") format("typeface");
+}
+
+@font-face {
+    font-family: 'Poppins var';
+    font-weight: 100 900;
+    font-display: swap;
+    font-style: bold;
+    font-named-instance: 'Bold';
+    src: url("Poppins-Bold.ttf") format("typeface");
+}
