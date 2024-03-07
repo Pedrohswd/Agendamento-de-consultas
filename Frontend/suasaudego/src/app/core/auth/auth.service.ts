@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, Observable, of, switchMap, throwError } from 'rxjs';
 import { AuthUtils } from 'app/core/auth/auth.utils';
 import { UserService } from 'app/core/user/user.service';
+import { Pessoa } from 'app/models/pessoa';
+import { API_CONFIG } from 'app/config/API_CONFIG';
 
 @Injectable()
 export class AuthService
@@ -146,14 +148,9 @@ export class AuthService
         return of(true);
     }
 
-    /**
-     * Sign up
-     *
-     * @param user
-     */
-    signUp(user: { name: string; email: string; password: string; company: string }): Observable<any>
+    signUp(user: Pessoa): Observable<any>
     {
-        return this._httpClient.post('api/auth/sign-up', user);
+        return this._httpClient.post(`${API_CONFIG.baseUrl}/pessoa`, user);
     }
 
     /**

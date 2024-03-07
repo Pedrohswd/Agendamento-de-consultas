@@ -1,18 +1,18 @@
 <div class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0">
-    <div class="md:flex md:items-center md:justify-end w-full sm:w-auto md:h-full md:w-1/2 py-8 px-4 sm:p-12 md:p-16 sm:rounded-2xl md:rounded-none sm:shadow md:shadow-none sm:bg-card">
+    <div class="md:flex md:items-center md:justify-center w-full sm:w-auto md:h-full md:w-full py-8 px-4 sm:p-12 md:p-16 sm:rounded-2xl md:rounded-none sm:shadow md:shadow-none sm:bg-card">
         <div class="w-full max-w-80 sm:w-80 mx-auto sm:mx-0">
             <!-- Logo -->
-            <div class="w-12">
-                <img src="assets/images/logo/logo.svg">
+            <div class="w-45">
+                <img src="assets/images/logo/logo-blue.svg">
             </div>
 
             <!-- Title -->
-            <div class="mt-8 text-4xl font-extrabold tracking-tight leading-tight">Sign up</div>
+            <div class="mt-8 text-4xl font-extrabold tracking-tight leading-tight">Cadastro</div>
             <div class="flex items-baseline mt-0.5 font-medium">
-                <div>Already have an account?</div>
+                <div>Já possui cadastro?</div>
                 <a
                     class="ml-1 text-primary-500 hover:underline"
-                    [routerLink]="['/sign-in']">Sign in
+                    [routerLink]="['/sign-in']">Login
                 </a>
             </div>
 
@@ -30,18 +30,131 @@
             <!-- Sign Up form -->
             <form
                 class="mt-8"
-                [formGroup]="signUpForm"
                 #signUpNgForm="ngForm">
 
-                <!-- Name field -->
+                <!-- pessoa field -->
                 <mat-form-field class="w-full">
-                    <mat-label>Full name</mat-label>
+                    <mat-label>Nome completo</mat-label>
                     <input
-                        id="name"
+                        required="Campo nome é requerido"
+                        id="nome"
                         matInput
-                        [formControlName]="'name'">
-                    <mat-error *ngIf="signUpForm.get('name').hasError('required')">
+                        [(ngModel)]="pessoa.nome"
+                        [formControlName]="'nome'"
+                        [formControl]="nome">
+                    <mat-error>
                         Full name is required
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="w-full">
+                    <mat-label>CPF</mat-label>
+                    <input
+                        id="cpf"
+                        required
+                        matInput
+                        [(ngModel)]="pessoa.cpf"
+                        [formControlName]="'cpf'"
+                        [formControl]="cpf">
+                    <mat-error>
+                        CPF é requirido
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="w-full">
+                    <mat-label>Data de Nascimento</mat-label>
+                    <input
+                        type="date"
+                        id="dataNascimento"
+                        required
+                        matInput
+                        [(ngModel)]="pessoa.dataNascimento"
+                        [formControlName]="'dataNascimento'"
+                        [formControl]="dataNascimento">
+                    <mat-error>
+                        CPF é requirido
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="w-full">
+                    <mat-label>Rua</mat-label>
+                    <input
+                        id="rua"
+                        required
+                        matInput
+                        [(ngModel)]="pessoa.endereco.rua"
+                        [formControlName]="'rua'"
+                        [formControl]="rua">
+                    <mat-error>
+                        CPF é requirido
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="w-full">
+                    <mat-label>Bairro</mat-label>
+                    <input
+                        id="bairro"
+                        required
+                        matInput
+                        [formControlName]="'name'"
+                        [formControlName]="'name'">
+                    <mat-error >
+                        CPF é requirido
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="w-full">
+                    <mat-label>Complemento</mat-label>
+                    <input
+                        id="complemento"
+                        matInput
+                        [(ngModel)]="pessoa.endereco.complemento"
+                        [formControlName]="'complemento'"
+                        [formControl]="complemento">
+                    <mat-error>
+                        CPF é requirido
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="w-full">
+                    <mat-label>Número</mat-label>
+                    <input
+                        id="numero"
+                        required
+                        matInput
+                        [(ngModel)]="pessoa.endereco.numero"
+                        [formControlName]="'numero'"
+                        [formControl]="numero">
+                    <mat-error>
+                        CPF é requirido
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="w-full">
+                    <mat-label>CEP</mat-label>
+                    <input
+                        id="cep"
+                        required
+                        matInput
+                        [(ngModel)]="pessoa.endereco.cep"
+                        [formControlName]="'cep'"
+                        [formControl]="cep">
+                    <mat-error>
+                        CPF é requirido
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="w-full">
+                    <mat-label>Cidade</mat-label>
+                    <input
+                        id="cidade"
+                        required
+                        matInput
+                        [(ngModel)]="pessoa.endereco.cidade"
+                        [formControlName]="'cidade'"
+                        [formControl]="cidade">
+                    <mat-error>
+                        CPF é requirido
                     </mat-error>
                 </mat-form-field>
 
@@ -52,10 +165,10 @@
                         id="email"
                         matInput
                         [formControlName]="'email'">
-                    <mat-error *ngIf="signUpForm.get('email').hasError('required')">
+                    <mat-error>
                         Email address is required
                     </mat-error>
-                    <mat-error *ngIf="signUpForm.get('email').hasError('email')">
+                    <mat-error>
                         Please enter a valid email address
                     </mat-error>
                 </mat-form-field>
@@ -88,16 +201,7 @@
                     </mat-error>
                 </mat-form-field>
 
-                <!-- Company field -->
-                <mat-form-field class="w-full">
-                    <mat-label>Company</mat-label>
-                    <input
-                        id="company-confirm"
-                        matInput
-                        [formControlName]="'company'">
-                </mat-form-field>
-
-                <!-- ToS and PP -->
+                <!-- ToS and PP 
                 <div class="inline-flex items-end w-full mt-1.5">
                     <mat-checkbox
                         class="-ml-2"
@@ -115,74 +219,22 @@
                         </a>
                     </mat-checkbox>
                 </div>
-
+                    -->
                 <!-- Submit button -->
                 <button
                     class="fuse-mat-button-large w-full mt-6"
                     mat-flat-button
                     [color]="'primary'"
-                    [disabled]="signUpForm.disabled"
-                    (click)="signUp()">
-                    <span *ngIf="!signUpForm.disabled">
-                        Create your free account
+                    (click)="signUp()"
+                    [disabled]="!validaCampos()">
+                    
+                    <span>
+                        Cadastre-se
                     </span>
-                    <mat-progress-spinner
-                        *ngIf="signUpForm.disabled"
-                        [diameter]="24"
-                        [mode]="'indeterminate'"></mat-progress-spinner>
                 </button>
 
             </form>
         </div>
     </div>
-    <div class="relative hidden md:flex flex-auto items-center justify-center w-1/2 h-full p-16 lg:px-28 overflow-hidden bg-gray-800 dark:border-l">
-        <!-- Background - @formatter:off -->
-        <!-- Rings -->
-        <svg class="absolute inset-0 pointer-events-none"
-             viewBox="0 0 960 540" width="100%" height="100%" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
-            <g class="text-gray-700 opacity-25" fill="none" stroke="currentColor" stroke-width="100">
-                <circle r="234" cx="196" cy="23"></circle>
-                <circle r="234" cx="790" cy="491"></circle>
-            </g>
-        </svg>
-        <!-- Dots -->
-        <svg class="absolute -top-16 -right-16 text-gray-700"
-             viewBox="0 0 220 192" width="220" height="192" fill="none">
-            <defs>
-                <pattern id="837c3e70-6c3a-44e6-8854-cc48c737b659" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                    <rect x="0" y="0" width="4" height="4" fill="currentColor"></rect>
-                </pattern>
-            </defs>
-            <rect width="220" height="192" fill="url(#837c3e70-6c3a-44e6-8854-cc48c737b659)"></rect>
-        </svg>
-        <!-- @formatter:on -->
-        <!-- Content -->
-        <div class="z-10 relative w-full max-w-2xl">
-            <div class="text-7xl font-bold leading-none text-gray-100">
-                <div>Welcome to</div>
-                <div>our community</div>
-            </div>
-            <div class="mt-6 text-lg tracking-tight leading-6 text-gray-400">
-                Fuse helps developers to build organized and well coded dashboards full of beautiful and rich modules.
-                Join us and start building your application today.
-            </div>
-            <div class="flex items-center mt-8">
-                <div class="flex flex-0 items-center -space-x-1.5">
-                    <img
-                        class="flex-0 w-10 h-10 rounded-full ring-4 ring-offset-1 ring-gray-800 ring-offset-gray-800 object-cover"
-                        src="assets/images/avatars/female-18.jpg">
-                    <img
-                        class="flex-0 w-10 h-10 rounded-full ring-4 ring-offset-1 ring-gray-800 ring-offset-gray-800 object-cover"
-                        src="assets/images/avatars/female-11.jpg">
-                    <img
-                        class="flex-0 w-10 h-10 rounded-full ring-4 ring-offset-1 ring-gray-800 ring-offset-gray-800 object-cover"
-                        src="assets/images/avatars/male-09.jpg">
-                    <img
-                        class="flex-0 w-10 h-10 rounded-full ring-4 ring-offset-1 ring-gray-800 ring-offset-gray-800 object-cover"
-                        src="assets/images/avatars/male-16.jpg">
-                </div>
-                <div class="ml-4 font-medium tracking-tight text-gray-400">More than 17k people joined us, it's your turn</div>
-            </div>
-        </div>
-    </div>
+    
 </div>
