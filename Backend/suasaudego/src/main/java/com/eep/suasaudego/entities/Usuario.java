@@ -1,5 +1,6 @@
 package com.eep.suasaudego.entities;
 
+import com.eep.suasaudego.entities.dtos.UsuarioDTO;
 import com.eep.suasaudego.entities.enums.Perfil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -22,7 +23,7 @@ public class Usuario {
     @JoinColumn(name = "pessoa_id")
     private Pessoa pessoa;
     @CollectionTable(name = "PERFIS")
-    private Integer perfil;
+    private Perfil perfil;
 
     public Usuario() {
     }
@@ -31,6 +32,14 @@ public class Usuario {
         this.id = id;
         this.email = email;
         this.senha = senha;
+    }
+
+    public Usuario(UsuarioDTO user){
+        this.id = user.getId();
+        this.email = user.getEmail();
+        this.senha = user.getSenha();
+        this.unidade = user.getUnidade();
+        user.addPerfil(user.getPerfis());
     }
 
     public Integer getId() {
@@ -74,11 +83,11 @@ public class Usuario {
     }
 
     public Perfil getPerfis() {
-        return Perfil.toEnum(perfil);
+        return perfil;
     }
 
     public void addPerfil(Perfil perfil) {
-        this.perfil = perfil.getCodigo();
+        this.perfil = Perfil.toEnum(perfil.getCodigo());
     }
 
 }

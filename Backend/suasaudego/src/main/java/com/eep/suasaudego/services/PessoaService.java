@@ -47,4 +47,9 @@ public class PessoaService {
         Optional<Pessoa> obj = pessoaRepository.findById(id);
         return obj.orElseThrow();
     }
+
+    public Pessoa findByCpf(String cpf){
+        Pessoa obj = pessoaRepository.findByCpf(cpf);
+        return obj;
+    }
 }
