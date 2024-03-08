@@ -23,7 +23,8 @@ public class UsuarioService {
     public Usuario create(UsuarioDTO usuarioDTO) {
         usuarioDTO.setId(null);
         Usuario usuario = new Usuario(usuarioDTO);
-        usuario.setPessoa(pessoaService.findByCpf(usuarioDTO.getPessoa()));
+        Pessoa pessoa = new Pessoa(usuarioDTO.getPessoa());
+        usuario.setPessoa(pessoaService.findByCpf(pessoa.getCpf()));
         usuario = repository.save(usuario);
         return usuario;
     }
@@ -31,5 +32,15 @@ public class UsuarioService {
     public Usuario findByID(Integer id) {
         Optional<Usuario> user = repository.findById(id);
         return user.orElseThrow();
+    }
+
+    public Usuario update(Integer id,UsuarioDTO usuarioDTO) {
+        usuarioDTO.setId(id);
+        Usuario old = findByID(id);
+        old = new Usuario(usuarioDTO);
+        Pessoa pessoa = new Pessoa(usuarioDTO.getPessoa());
+        old.setPessoa(pessoaService.findByCpf(pessoa.getCpf()));
+        old = repository.save(old);
+        return old;
     }
 }

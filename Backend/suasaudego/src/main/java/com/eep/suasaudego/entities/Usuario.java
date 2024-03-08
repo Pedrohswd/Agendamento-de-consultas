@@ -39,7 +39,7 @@ public class Usuario {
         this.email = user.getEmail();
         this.senha = user.getSenha();
         this.unidade = user.getUnidade();
-        user.addPerfil(user.getPerfis());
+        this.perfil = user.getPerfil();
     }
 
     public Integer getId() {

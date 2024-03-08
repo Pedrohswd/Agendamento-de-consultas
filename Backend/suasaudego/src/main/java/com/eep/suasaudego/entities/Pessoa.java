@@ -57,6 +57,10 @@ public class Pessoa {
         this.setEndereco(endereco);
     }
 
+    public Pessoa(String cpf){
+        this.cpf = cpf;
+    }
+
     public Integer getId() {
         return id;
     }

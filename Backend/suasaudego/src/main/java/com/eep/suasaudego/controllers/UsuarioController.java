@@ -30,7 +30,12 @@ public class UsuarioController {
     public ResponseEntity<UsuarioDTO> create(@RequestBody UsuarioDTO usuarioDTO){
         Usuario newUsuario = service.create(usuarioDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(newUsuario.getId()).toUri();
-
         return ResponseEntity.created(uri).build();
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<UsuarioDTO> update(@PathVariable Integer id, @RequestBody UsuarioDTO usuarioDTO){
+        Usuario updatedUsuario = service.update(id,usuarioDTO);
+        return ResponseEntity.ok().body(new UsuarioDTO(updatedUsuario));
     }
 }
