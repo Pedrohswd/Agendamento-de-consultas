@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, NgForm, Validators, FormControl } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, NgForm, Validators, FormControl, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseAlertType } from '@fuse/components/alert';
@@ -7,17 +7,16 @@ import { AuthService } from 'app/core/auth/auth.service';
 import { Pessoa } from 'app/models/pessoa';
 
 @Component({
-    selector     : 'auth-sign-up',
-    templateUrl  : './sign-up.component.html',
+    selector: 'auth-sign-up',
+    templateUrl: './sign-up.component.html',
     encapsulation: ViewEncapsulation.None,
-    animations   : fuseAnimations
+    animations: fuseAnimations
 })
-export class AuthSignUpComponent implements OnInit
-{
+export class AuthSignUpComponent implements OnInit {
     @ViewChild('signUpNgForm') signUpNgForm: NgForm;
 
     alert: { type: FuseAlertType; message: string } = {
-        type   : 'success',
+        type: 'success',
         message: ''
     };
     showAlert: boolean = false;
@@ -51,16 +50,25 @@ export class AuthSignUpComponent implements OnInit
 
     cidade: FormControl = new FormControl(null, Validators.required);
 
-    cep: FormControl = new FormControl(null, Validators.required); 
+    cep: FormControl = new FormControl(null, Validators.required);
+
+
+    firstFormGroup = this._formBuilder.group({
+        firstCtrl: ['', Validators.required],
+      });
+      secondFormGroup = this._formBuilder.group({
+        secondCtrl: ['', Validators.required],
+      });
+      isLinear = false;
 
     /**
      * Constructor
      */
     constructor(
         private _authService: AuthService,
-        private _router: Router
-    )
-    {
+        private _router: Router,
+        private _formBuilder: FormBuilder
+    ) {
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -70,18 +78,17 @@ export class AuthSignUpComponent implements OnInit
     /**
      * On init
      */
-    ngOnInit(): void
-    {
+    ngOnInit(): void {
         // Create the form
-        
+
     }
 
     validaCampos(): boolean {
         return this.nome.valid && this.cpf.valid
-          && this.dataNascimento.valid && this.cidade.valid
-          && this.rua.valid && this.cep.valid
-          
-      }
+            && this.dataNascimento.valid && this.cidade.valid
+            && this.rua.valid && this.cep.valid
+
+    }
 
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
@@ -90,8 +97,7 @@ export class AuthSignUpComponent implements OnInit
     /**
      * Sign up
      */
-    signUp(): void
-    {
+    signUp(): void {
         this._authService.signUp(this.pessoa)
             .subscribe(
                 (response) => {
@@ -109,7 +115,7 @@ export class AuthSignUpComponent implements OnInit
 
                     // Set the alert
                     this.alert = {
-                        type   : 'error',
+                        type: 'error',
                         message: 'Something went wrong, please try again.'
                     };
 
