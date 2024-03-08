@@ -4,6 +4,7 @@ import com.eep.suasaudego.entities.dtos.PessoaDTO;
 import com.eep.suasaudego.entities.enums.Perfil;
 import com.eep.suasaudego.entities.enums.Sexo;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -27,6 +28,7 @@ public class Pessoa {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "endereco_id", referencedColumnName = "id")
     private Endereco endereco;
+    @JsonIgnore
     @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL)
     private List<Usuario> usuarios;
 
@@ -53,6 +55,10 @@ public class Pessoa {
         this.dataNascimento = obj.getDataNascimento();
         Endereco endereco = new Endereco(obj.getEndereco());
         this.setEndereco(endereco);
+    }
+
+    public Pessoa(String cpf){
+        this.cpf = cpf;
     }
 
     public Integer getId() {

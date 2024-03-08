@@ -29,8 +29,8 @@ public class Unidade {
     @OneToMany(mappedBy = "unidade")
     private Set<Usuario> usuario = new HashSet<>();
     @JsonIgnore
-    @OneToMany(mappedBy = "unidade")
-    private List<UnidadeMedico> listMedico = new ArrayList<>();
+    @ManyToMany
+    private List<Medico> medico = new ArrayList<>();
 
 
 
