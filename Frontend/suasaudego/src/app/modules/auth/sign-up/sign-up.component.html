@@ -38,7 +38,7 @@
                         <mat-form-field class="w-full">
                             <mat-label>CPF</mat-label>
                             <input id="cpf" required matInput [(ngModel)]="pessoa.cpf" [formControlName]="'cpf'"
-                                [formControl]="cpf">
+                                [formControl]="cpf" [(ngModel)]="usuario.pessoa">
                             <mat-error>
                                 CPF é requirido
                             </mat-error>
@@ -55,7 +55,7 @@
 
 
                         <div>
-                            <button mat-button matStepperNext>Next</button>
+                            <button mat-button matStepperNext>Avançar</button>
                         </div>
                     </form>
                 </mat-step>
@@ -115,18 +115,51 @@
                         </mat-form-field>
 
                         <div>
-                            <button mat-button matStepperPrevious>Back</button>
-                            <button mat-button matStepperNext>Next</button>
+                            <button mat-button matStepperPrevious>Voltar</button>
+                            <button mat-button matStepperNext>Avançar</button>
                         </div>
                     </form>
                 </mat-step>
                 <mat-step>
-                    <ng-template matStepLabel>Done</ng-template>
-                    <p>You are now done.</p>
-                    <div>
-                        <button mat-button matStepperPrevious>Back</button>
-                        <button mat-button (click)="stepper.reset()">Reset</button>
-                    </div>
+                    <ng-template matStepLabel>Usuario</ng-template>
+                    <form action="">
+                        <!-- Email field -->
+                        <mat-form-field class="w-full">
+                            <mat-label>Email</mat-label>
+                            <input id="email" required matInput [(ngModel)]="usuario.email"
+                            [formControlName]="'email'" [formControl]="email">
+                            <mat-error>
+                                Email address is required
+                            </mat-error>
+                            <mat-error>
+                                Please enter a valid email address
+                            </mat-error>
+                        </mat-form-field>
+
+
+
+                        <!-- Password field -->
+                        <mat-form-field class="w-full">
+                            <mat-label>Senha</mat-label>
+                            <input #passwordField id="senha" required matInput [(ngModel)]="usuario.senha"
+                            [formControlName]="'senha'" [formControl]="senha" type="password">
+                            <button mat-icon-button type="button"
+                                (click)="passwordField.type === 'password' ? passwordField.type = 'text' : passwordField.type = 'password'"
+                                matSuffix>
+                                <mat-icon class="icon-size-5" *ngIf="passwordField.type === 'password'"
+                                    [svgIcon]="'heroicons_solid:eye'"></mat-icon>
+                                <mat-icon class="icon-size-5" *ngIf="passwordField.type === 'text'"
+                                    [svgIcon]="'heroicons_solid:eye-off'"></mat-icon>
+                            </button>
+                            <mat-error>
+                                Password is required
+                            </mat-error>
+                        </mat-form-field>
+                        <div>
+                            <button mat-button matStepperPrevious>Voltar</button>
+                        </div>
+                    </form>
+
                 </mat-step>
             </mat-stepper>
 
@@ -216,36 +249,11 @@
                 </mat-form-field>
                 -->
 
-            <!-- Email field 
-                <mat-form-field class="w-full">
-                    <mat-label>Email address</mat-label>
-                    <input id="email" matInput [formControlName]="'email'">
-                    <mat-error>
-                        Email address is required
-                    </mat-error>
-                    <mat-error>
-                        Please enter a valid email address
-                    </mat-error>
-                </mat-form-field>
-                -->
 
-            <!-- Password field 
-                <mat-form-field class="w-full">
-                    <mat-label>Password</mat-label>
-                    <input id="password" matInput type="password" [formControlName]="'password'" #passwordField>
-                    <button mat-icon-button type="button"
-                        (click)="passwordField.type === 'password' ? passwordField.type = 'text' : passwordField.type = 'password'"
-                        matSuffix>
-                        <mat-icon class="icon-size-5" *ngIf="passwordField.type === 'password'"
-                            [svgIcon]="'heroicons_solid:eye'"></mat-icon>
-                        <mat-icon class="icon-size-5" *ngIf="passwordField.type === 'text'"
-                            [svgIcon]="'heroicons_solid:eye-off'"></mat-icon>
-                    </button>
-                    <mat-error>
-                        Password is required
-                    </mat-error>
-                </mat-form-field>
-                -->
+
+
+
+
 
             <!-- ToS and PP 
                 <div class="inline-flex items-end w-full mt-1.5">

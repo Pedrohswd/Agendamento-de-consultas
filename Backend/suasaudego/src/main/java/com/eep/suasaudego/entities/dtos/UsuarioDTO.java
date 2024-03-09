@@ -13,7 +13,7 @@ public class UsuarioDTO {
     private String email;
     private String senha;
 
-    private Unidade unidade;
+    private String cnes;
 
     private String cpf;
 
@@ -36,7 +36,7 @@ public class UsuarioDTO {
         this.senha= usuario.getSenha();
         this.perfil = usuario.getPerfis().getCodigo();
         this.cpf = usuario.getPessoa().getCpf();
-        this.unidade = usuario.getUnidade();
+        //this.cnes = usuario.getUnidade().getCNES();
     }
 
     public Integer getId() {
@@ -63,12 +63,12 @@ public class UsuarioDTO {
         this.senha = senha;
     }
 
-    public Unidade getUnidade() {
-        return unidade;
+    public String getUnidade() {
+        return cnes;
     }
 
     public void setUnidade(Unidade unidade) {
-        this.unidade = unidade;
+        this.cnes = unidade.getCNES();
     }
 
     public String getPessoa() {

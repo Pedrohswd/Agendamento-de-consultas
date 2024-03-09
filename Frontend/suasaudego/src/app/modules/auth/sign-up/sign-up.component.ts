@@ -5,6 +5,7 @@ import { fuseAnimations } from '@fuse/animations';
 import { FuseAlertType } from '@fuse/components/alert';
 import { AuthService } from 'app/core/auth/auth.service';
 import { Pessoa } from 'app/models/pessoa';
+import { Usuario } from 'app/models/usuario';
 
 @Component({
     selector: 'auth-sign-up',
@@ -53,6 +54,19 @@ export class AuthSignUpComponent implements OnInit {
     cep: FormControl = new FormControl(null, Validators.required);
 
 
+    usuario: Usuario = {
+        id: '',
+        email: '',
+        senha: '',
+        cnes: null,
+        pessoa: '',
+        perfil: 1
+    }
+
+    email: FormControl = new FormControl(null, Validators.email);
+    senha: FormControl = new FormControl(null, Validators.minLength(3));
+
+
     firstFormGroup = this._formBuilder.group({
         firstCtrl: ['', Validators.required],
       });
@@ -87,6 +101,7 @@ export class AuthSignUpComponent implements OnInit {
         return this.nome.valid && this.cpf.valid
             && this.dataNascimento.valid && this.cidade.valid
             && this.rua.valid && this.cep.valid
+            && this.email.valid && this.senha.valid
 
     }
 
@@ -101,6 +116,27 @@ export class AuthSignUpComponent implements OnInit {
         this._authService.signUp(this.pessoa)
             .subscribe(
                 (response) => {
+                    this._authService.signUpUser(this.usuario).subscribe((response)=>{
+
+                    },
+                    (response) =>{
+
+                        // Re-enable the form
+                        //this.signUpForm.enable();
+    
+                        // Reset the form
+                        this.signUpNgForm.resetForm();
+    
+                        // Set the alert
+                        this.alert = {
+                            type: 'error',
+                            message: 'Something went wrong, please try again.'
+                        };
+    
+                        // Show the alert
+                        this.showAlert = true;
+                    }
+                    );
 
                     // Navigate to the confirmation required page
                     this._router.navigateByUrl('/confirmation-required');
