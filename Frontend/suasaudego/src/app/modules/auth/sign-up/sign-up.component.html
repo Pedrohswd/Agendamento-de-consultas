@@ -1,8 +1,9 @@
 <div class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0">
-    <div class="md:flex md:items-center md:justify-center w-full sm:w-auto md:h-full md:w-full py-8 px-4 sm:p-12 md:p-16 sm:rounded-2xl md:rounded-none sm:shadow md:shadow-none sm:bg-card">
-        <div class="w-full max-w-80 sm:w-80 mx-auto sm:mx-0">
+    <div
+        class="md:flex md:items-center md:justify-center w-full sm:w-auto md:h-full md:w-1/2 py-8 px-4 sm:p-12 md:p-16 sm:rounded-2xl md:rounded-none sm:shadow md:shadow-none sm:bg-card">
+        <div class="">
             <!-- Logo -->
-            <div class="w-45">
+            <div class="w-40 items-center">
                 <img src="assets/images/logo/logo-blue.svg">
             </div>
 
@@ -10,38 +11,167 @@
             <div class="mt-8 text-4xl font-extrabold tracking-tight leading-tight">Cadastro</div>
             <div class="flex items-baseline mt-0.5 font-medium">
                 <div>Já possui cadastro?</div>
-                <a
-                    class="ml-1 text-primary-500 hover:underline"
-                    [routerLink]="['/sign-in']">Login
+                <a class="ml-1 text-primary-500 hover:underline" [routerLink]="['/sign-in']">Login
                 </a>
             </div>
 
             <!-- Alert -->
-            <fuse-alert
-                class="mt-8"
-                *ngIf="showAlert"
-                [appearance]="'outline'"
-                [showIcon]="false"
-                [type]="alert.type"
+            <fuse-alert class="mt-8" *ngIf="showAlert" [appearance]="'outline'" [showIcon]="false" [type]="alert.type"
                 [@shake]="alert.type === 'error'">
                 {{alert.message}}
             </fuse-alert>
 
-            <!-- Sign Up form -->
-            <form
-                class="mt-8"
-                #signUpNgForm="ngForm">
 
-                <!-- pessoa field -->
+            <mat-stepper class="w-full" [linear]="isLinear" #stepper>
+                <mat-step [stepControl]="firstFormGroup">
+                    <form [formGroup]="firstFormGroup">
+                        <ng-template matStepLabel>Cadastro</ng-template>
+                        <mat-form-field class="w-full">
+                            <mat-label>Nome completo</mat-label>
+                            <input required="Campo nome é requerido" id="nome" matInput [(ngModel)]="pessoa.nome"
+                                [formControlName]="'nome'" [formControl]="nome">
+                            <mat-error>
+                                Full name is required
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="w-full">
+                            <mat-label>CPF</mat-label>
+                            <input id="cpf" required matInput [(ngModel)]="pessoa.cpf" [formControlName]="'cpf'"
+                                [formControl]="cpf" [(ngModel)]="usuario.pessoa">
+                            <mat-error>
+                                CPF é requirido
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="w-full">
+                            <mat-label>Data de Nascimento</mat-label>
+                            <input type="date" id="dataNascimento" required matInput [(ngModel)]="pessoa.dataNascimento"
+                                [formControlName]="'dataNascimento'" [formControl]="dataNascimento">
+                            <mat-error>
+                                CPF é requirido
+                            </mat-error>
+                        </mat-form-field>
+
+
+                        <div>
+                            <button mat-button matStepperNext>Avançar</button>
+                        </div>
+                    </form>
+                </mat-step>
+                <mat-step [stepControl]="secondFormGroup" label="Endereço">
+                    <form [formGroup]="secondFormGroup">
+                        <mat-form-field class="w-full">
+                            <mat-label>Rua</mat-label>
+                            <input id="rua" required matInput [(ngModel)]="pessoa.endereco.rua"
+                                [formControlName]="'rua'" [formControl]="rua">
+                            <mat-error>
+                                CPF é requirido
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="w-full">
+                            <mat-label>Bairro</mat-label>
+                            <input id="bairro" required matInput [formControlName]="'name'" [formControlName]="'name'">
+                            <mat-error>
+                                CPF é requirido
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="w-full">
+                            <mat-label>Complemento</mat-label>
+                            <input id="complemento" matInput [(ngModel)]="pessoa.endereco.complemento"
+                                [formControlName]="'complemento'" [formControl]="complemento">
+                            <mat-error>
+                                CPF é requirido
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="w-full">
+                            <mat-label>Número</mat-label>
+                            <input id="numero" required matInput [(ngModel)]="pessoa.endereco.numero"
+                                [formControlName]="'numero'" [formControl]="numero">
+                            <mat-error>
+                                CPF é requirido
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="w-full">
+                            <mat-label>CEP</mat-label>
+                            <input id="cep" required matInput [(ngModel)]="pessoa.endereco.cep"
+                                [formControlName]="'cep'" [formControl]="cep">
+                            <mat-error>
+                                CPF é requirido
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="w-full">
+                            <mat-label>Cidade</mat-label>
+                            <input id="cidade" required matInput [(ngModel)]="pessoa.endereco.cidade"
+                                [formControlName]="'cidade'" [formControl]="cidade">
+                            <mat-error>
+                                CPF é requirido
+                            </mat-error>
+                        </mat-form-field>
+
+                        <div>
+                            <button mat-button matStepperPrevious>Voltar</button>
+                            <button mat-button matStepperNext>Avançar</button>
+                        </div>
+                    </form>
+                </mat-step>
+                <mat-step>
+                    <ng-template matStepLabel>Usuario</ng-template>
+                    <form action="">
+                        <!-- Email field -->
+                        <mat-form-field class="w-full">
+                            <mat-label>Email</mat-label>
+                            <input id="email" required matInput [(ngModel)]="usuario.email"
+                            [formControlName]="'email'" [formControl]="email">
+                            <mat-error>
+                                Email address is required
+                            </mat-error>
+                            <mat-error>
+                                Please enter a valid email address
+                            </mat-error>
+                        </mat-form-field>
+
+
+
+                        <!-- Password field -->
+                        <mat-form-field class="w-full">
+                            <mat-label>Senha</mat-label>
+                            <input #passwordField id="senha" required matInput [(ngModel)]="usuario.senha"
+                            [formControlName]="'senha'" [formControl]="senha" type="password">
+                            <button mat-icon-button type="button"
+                                (click)="passwordField.type === 'password' ? passwordField.type = 'text' : passwordField.type = 'password'"
+                                matSuffix>
+                                <mat-icon class="icon-size-5" *ngIf="passwordField.type === 'password'"
+                                    [svgIcon]="'heroicons_solid:eye'"></mat-icon>
+                                <mat-icon class="icon-size-5" *ngIf="passwordField.type === 'text'"
+                                    [svgIcon]="'heroicons_solid:eye-off'"></mat-icon>
+                            </button>
+                            <mat-error>
+                                Password is required
+                            </mat-error>
+                        </mat-form-field>
+                        <div>
+                            <button mat-button matStepperPrevious>Voltar</button>
+                        </div>
+                    </form>
+
+                </mat-step>
+            </mat-stepper>
+
+
+            <!-- Sign Up form 
+            <form>
+                -->
+            <!-- pessoa field 
                 <mat-form-field class="w-full">
                     <mat-label>Nome completo</mat-label>
-                    <input
-                        required="Campo nome é requerido"
-                        id="nome"
-                        matInput
-                        [(ngModel)]="pessoa.nome"
-                        [formControlName]="'nome'"
-                        [formControl]="nome">
+                    <input required="Campo nome é requerido" id="nome" matInput [(ngModel)]="pessoa.nome"
+                        [formControlName]="'nome'" [formControl]="nome">
                     <mat-error>
                         Full name is required
                     </mat-error>
@@ -49,12 +179,7 @@
 
                 <mat-form-field class="w-full">
                     <mat-label>CPF</mat-label>
-                    <input
-                        id="cpf"
-                        required
-                        matInput
-                        [(ngModel)]="pessoa.cpf"
-                        [formControlName]="'cpf'"
+                    <input id="cpf" required matInput [(ngModel)]="pessoa.cpf" [formControlName]="'cpf'"
                         [formControl]="cpf">
                     <mat-error>
                         CPF é requirido
@@ -63,14 +188,8 @@
 
                 <mat-form-field class="w-full">
                     <mat-label>Data de Nascimento</mat-label>
-                    <input
-                        type="date"
-                        id="dataNascimento"
-                        required
-                        matInput
-                        [(ngModel)]="pessoa.dataNascimento"
-                        [formControlName]="'dataNascimento'"
-                        [formControl]="dataNascimento">
+                    <input type="date" id="dataNascimento" required matInput [(ngModel)]="pessoa.dataNascimento"
+                        [formControlName]="'dataNascimento'" [formControl]="dataNascimento">
                     <mat-error>
                         CPF é requirido
                     </mat-error>
@@ -78,12 +197,7 @@
 
                 <mat-form-field class="w-full">
                     <mat-label>Rua</mat-label>
-                    <input
-                        id="rua"
-                        required
-                        matInput
-                        [(ngModel)]="pessoa.endereco.rua"
-                        [formControlName]="'rua'"
+                    <input id="rua" required matInput [(ngModel)]="pessoa.endereco.rua" [formControlName]="'rua'"
                         [formControl]="rua">
                     <mat-error>
                         CPF é requirido
@@ -92,25 +206,16 @@
 
                 <mat-form-field class="w-full">
                     <mat-label>Bairro</mat-label>
-                    <input
-                        id="bairro"
-                        required
-                        matInput
-                        [formControlName]="'name'"
-                        [formControlName]="'name'">
-                    <mat-error >
+                    <input id="bairro" required matInput [formControlName]="'name'" [formControlName]="'name'">
+                    <mat-error>
                         CPF é requirido
                     </mat-error>
                 </mat-form-field>
 
                 <mat-form-field class="w-full">
                     <mat-label>Complemento</mat-label>
-                    <input
-                        id="complemento"
-                        matInput
-                        [(ngModel)]="pessoa.endereco.complemento"
-                        [formControlName]="'complemento'"
-                        [formControl]="complemento">
+                    <input id="complemento" matInput [(ngModel)]="pessoa.endereco.complemento"
+                        [formControlName]="'complemento'" [formControl]="complemento">
                     <mat-error>
                         CPF é requirido
                     </mat-error>
@@ -118,13 +223,8 @@
 
                 <mat-form-field class="w-full">
                     <mat-label>Número</mat-label>
-                    <input
-                        id="numero"
-                        required
-                        matInput
-                        [(ngModel)]="pessoa.endereco.numero"
-                        [formControlName]="'numero'"
-                        [formControl]="numero">
+                    <input id="numero" required matInput [(ngModel)]="pessoa.endereco.numero"
+                        [formControlName]="'numero'" [formControl]="numero">
                     <mat-error>
                         CPF é requirido
                     </mat-error>
@@ -132,12 +232,7 @@
 
                 <mat-form-field class="w-full">
                     <mat-label>CEP</mat-label>
-                    <input
-                        id="cep"
-                        required
-                        matInput
-                        [(ngModel)]="pessoa.endereco.cep"
-                        [formControlName]="'cep'"
+                    <input id="cep" required matInput [(ngModel)]="pessoa.endereco.cep" [formControlName]="'cep'"
                         [formControl]="cep">
                     <mat-error>
                         CPF é requirido
@@ -146,62 +241,21 @@
 
                 <mat-form-field class="w-full">
                     <mat-label>Cidade</mat-label>
-                    <input
-                        id="cidade"
-                        required
-                        matInput
-                        [(ngModel)]="pessoa.endereco.cidade"
-                        [formControlName]="'cidade'"
-                        [formControl]="cidade">
+                    <input id="cidade" required matInput [(ngModel)]="pessoa.endereco.cidade"
+                        [formControlName]="'cidade'" [formControl]="cidade">
                     <mat-error>
                         CPF é requirido
                     </mat-error>
                 </mat-form-field>
+                -->
 
-                <!-- Email field -->
-                <mat-form-field class="w-full">
-                    <mat-label>Email address</mat-label>
-                    <input
-                        id="email"
-                        matInput
-                        [formControlName]="'email'">
-                    <mat-error>
-                        Email address is required
-                    </mat-error>
-                    <mat-error>
-                        Please enter a valid email address
-                    </mat-error>
-                </mat-form-field>
 
-                <!-- Password field -->
-                <mat-form-field class="w-full">
-                    <mat-label>Password</mat-label>
-                    <input
-                        id="password"
-                        matInput
-                        type="password"
-                        [formControlName]="'password'"
-                        #passwordField>
-                    <button
-                        mat-icon-button
-                        type="button"
-                        (click)="passwordField.type === 'password' ? passwordField.type = 'text' : passwordField.type = 'password'"
-                        matSuffix>
-                        <mat-icon
-                            class="icon-size-5"
-                            *ngIf="passwordField.type === 'password'"
-                            [svgIcon]="'heroicons_solid:eye'"></mat-icon>
-                        <mat-icon
-                            class="icon-size-5"
-                            *ngIf="passwordField.type === 'text'"
-                            [svgIcon]="'heroicons_solid:eye-off'"></mat-icon>
-                    </button>
-                    <mat-error>
-                        Password is required
-                    </mat-error>
-                </mat-form-field>
 
-                <!-- ToS and PP 
+
+
+
+
+            <!-- ToS and PP 
                 <div class="inline-flex items-end w-full mt-1.5">
                     <mat-checkbox
                         class="-ml-2"
@@ -220,21 +274,17 @@
                     </mat-checkbox>
                 </div>
                     -->
-                <!-- Submit button -->
-                <button
-                    class="fuse-mat-button-large w-full mt-6"
-                    mat-flat-button
-                    [color]="'primary'"
-                    (click)="signUp()"
-                    [disabled]="!validaCampos()">
-                    
-                    <span>
-                        Cadastre-se
-                    </span>
-                </button>
+            <!-- Submit button -->
+            <button class="fuse-mat-button-large w-full mt-6" mat-flat-button [color]="'primary'" (click)="signUp()"
+                [disabled]="!validaCampos()">
 
-            </form>
+                <span>
+                    Cadastre-se
+                </span>
+            </button>
+            <!-- </form>-->
+
         </div>
     </div>
-    
+
 </div>
