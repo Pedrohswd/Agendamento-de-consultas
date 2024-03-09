@@ -102,8 +102,14 @@ export class AuthSignUpComponent implements OnInit {
             && this.dataNascimento.valid && this.cidade.valid
             && this.rua.valid && this.cep.valid
             && this.email.valid && this.senha.valid
-
     }
+
+    validaCampos(): boolean {
+        return this.nome.valid && this.cpf.valid
+          && this.dataNascimento.valid && this.cidade.valid
+          && this.rua.valid && this.cep.valid
+          
+      }
 
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
@@ -112,6 +118,7 @@ export class AuthSignUpComponent implements OnInit {
     /**
      * Sign up
      */
+
     signUp(): void {
         this._authService.signUp(this.pessoa)
             .subscribe(
