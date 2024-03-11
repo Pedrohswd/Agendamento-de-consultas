@@ -1,6 +1,7 @@
 package com.eep.suasaudego.entities;
 
 import com.eep.suasaudego.entities.dtos.EnderecoDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -15,9 +16,15 @@ public class Endereco {
     private String estado;
     private String cep;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "pessoa_id", referencedColumnName = "id")
     private Pessoa pessoa;
+
+    @JsonIgnore
+    @OneToOne
+    @JoinColumn(name = "unidade_id", referencedColumnName = "id")
+    private Unidade unidade;
 
 
     public Endereco() {
@@ -31,6 +38,7 @@ public class Endereco {
         this.cep = cep;
         this.numero = numero;
     }
+
     public Endereco(EnderecoDTO endereco) {
         this.id = endereco.getId();
         this.rua = endereco.getRua();
@@ -95,6 +103,14 @@ public class Endereco {
 
     public void setCep(String cep) {
         this.cep = cep;
+    }
+
+    public Unidade getUnidade() {
+        return unidade;
+    }
+
+    public void setUnidade(Unidade unidade) {
+        this.unidade = unidade;
     }
 
     public Pessoa getPessoa() {

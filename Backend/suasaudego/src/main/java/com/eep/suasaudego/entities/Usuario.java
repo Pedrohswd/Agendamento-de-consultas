@@ -38,7 +38,6 @@ public class Usuario {
         this.id = user.getId();
         this.email = user.getEmail();
         this.senha = user.getSenha();
-        this.unidade = user.getUnidade();
         this.perfil = user.getPerfil();
     }
 

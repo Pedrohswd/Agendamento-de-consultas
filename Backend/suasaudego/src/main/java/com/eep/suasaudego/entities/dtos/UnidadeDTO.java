@@ -1,42 +1,38 @@
-package com.eep.suasaudego.entities;
+package com.eep.suasaudego.entities.dtos;
 
-import com.eep.suasaudego.entities.dtos.UnidadeDTO;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import com.eep.suasaudego.entities.Endereco;
+import com.eep.suasaudego.entities.Medico;
+import com.eep.suasaudego.entities.Unidade;
+import com.eep.suasaudego.entities.Usuario;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Entity
-public class Unidade {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UnidadeDTO {
+
+
     private Integer id;
     private String nome;
-    @Column(unique = true, nullable = true)
+
     private String cnpj;
+
     private String gestao;
-    @Column(unique = true)
+
     private String CNES;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "endereco_id", referencedColumnName = "id")
+
     private Endereco endereco;
-    @JsonIgnore
-    @OneToMany(mappedBy = "unidade")
+
     private Set<Usuario> usuario = new HashSet<>();
-    @JsonIgnore
-    @ManyToMany
+
     private List<Medico> medico = new ArrayList<>();
 
-    public Unidade() {
+    public UnidadeDTO() {
 
     }
 
-    public Unidade(Integer id, String nome, String cnpj, String gestao, String CNES) {
+    public UnidadeDTO(Integer id, String nome, String cnpj, String gestao, String CNES) {
         this.id = id;
         this.nome = nome;
         this.cnpj = cnpj;
@@ -44,7 +40,7 @@ public class Unidade {
         this.CNES = CNES;
     }
 
-    public Unidade(UnidadeDTO unidade){
+    public UnidadeDTO(Unidade unidade){
         this.id = unidade.getId();
         this.nome = unidade.getNome();
         this.cnpj = unidade.getCnpj();
@@ -101,3 +97,5 @@ public class Unidade {
         this.endereco = endereco;
     }
 }
+
+
