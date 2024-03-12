@@ -29,7 +29,7 @@ public class DBService {
 
     @Autowired
     private UnidadeRepository unidadeRepository;
-
+  
     public void instanciaDB() {
         Pessoa p1 = new Pessoa(null, "Pedro Henrique", "040.198.751-54", "19/12/2003", 0);
         p1.addSexo(Sexo.MASCULINO);
@@ -38,11 +38,11 @@ public class DBService {
         ed1.setPessoa(p1);
         p1.setEndereco(ed1);
 
+
         Unidade uni1 = new Unidade(null,"São Judas",null,"Pública", "012345");
         Endereco ed2 = new Endereco(null, "Rua botafogo q2 l8", "Nerópolis", "GO", "75463000", "SN", "");
         uni1.setEndereco(ed2);
         ed2.setUnidade(uni1);
-
 
 
         Usuario u1 = new Usuario(null, "pedrohsfwd@gmail.com", "123");

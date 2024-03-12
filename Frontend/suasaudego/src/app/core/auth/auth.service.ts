@@ -7,7 +7,6 @@ import { Pessoa } from 'app/models/pessoa';
 import { API_CONFIG } from 'app/config/API_CONFIG';
 import { Usuario } from 'app/models/usuario';
 
-
 @Injectable()
 export class AuthService
 {

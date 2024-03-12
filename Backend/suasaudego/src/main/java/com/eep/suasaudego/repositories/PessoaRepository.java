@@ -8,6 +8,5 @@ import org.springframework.data.repository.query.Param;
 import java.util.Optional;
 
 public interface PessoaRepository extends JpaRepository<Pessoa, Integer> {
-
     Pessoa findByCpf(String cpf);
 }
