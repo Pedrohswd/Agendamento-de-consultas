@@ -94,7 +94,6 @@ export class AuthSignUpComponent implements OnInit {
      */
     ngOnInit(): void {
         // Create the form
-
     }
 
     validaCampos(): boolean {
