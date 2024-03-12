@@ -104,12 +104,6 @@ export class AuthSignUpComponent implements OnInit {
             && this.email.valid && this.senha.valid
     }
 
-    validaCampos(): boolean {
-        return this.nome.valid && this.cpf.valid
-          && this.dataNascimento.valid && this.cidade.valid
-          && this.rua.valid && this.cep.valid
-          
-      }
 
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
@@ -130,16 +124,16 @@ export class AuthSignUpComponent implements OnInit {
 
                         // Re-enable the form
                         //this.signUpForm.enable();
-    
+
                         // Reset the form
                         this.signUpNgForm.resetForm();
-    
+
                         // Set the alert
                         this.alert = {
                             type: 'error',
                             message: 'Something went wrong, please try again.'
                         };
-    
+
                         // Show the alert
                         this.showAlert = true;
                     }
