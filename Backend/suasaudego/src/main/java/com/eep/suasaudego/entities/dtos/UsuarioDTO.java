@@ -13,19 +13,21 @@ public class UsuarioDTO {
     private String email;
     private String senha;
 
-    private Unidade unidade;
+    private String cnes;
 
-    private Pessoa pessoa;
+    private String cpf;
 
     private Integer perfil;
 
     public UsuarioDTO() {
     }
 
-    public UsuarioDTO(Integer id, String email, String senha) {
+    public UsuarioDTO(Integer id, String email, String senha, String cnes,String cpf, Integer perfil) {
         this.id = id;
         this.email = email;
         this.senha = senha;
+        this.cpf = cpf;
+        this.perfil = perfil;
     }
 
     public UsuarioDTO(Usuario usuario){
@@ -33,7 +35,8 @@ public class UsuarioDTO {
         this.email = usuario.getEmail();
         this.senha= usuario.getSenha();
         this.perfil = usuario.getPerfis().getCodigo();
-        this.unidade = usuario.getUnidade();
+        this.cpf = usuario.getPessoa().getCpf();
+        //this.cnes = usuario.getUnidade().getCNES();
     }
 
     public Integer getId() {
@@ -60,23 +63,23 @@ public class UsuarioDTO {
         this.senha = senha;
     }
 
-    public Unidade getUnidade() {
-        return unidade;
+    public String getUnidade() {
+        return cnes;
     }
 
     public void setUnidade(Unidade unidade) {
-        this.unidade = unidade;
+        this.cnes = unidade.getCNES();
     }
 
-    public Pessoa getPessoa() {
-        return pessoa;
+    public String getPessoa() {
+        return cpf;
     }
 
     public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
+        this.cpf = pessoa.getCpf();
     }
 
-    public Perfil getPerfis() {
+    public Perfil getPerfil() {
         return Perfil.toEnum(perfil);
     }
 

@@ -1,39 +1,26 @@
-package com.eep.suasaudego.entities;
+package com.eep.suasaudego.entities.dtos;
 
-import com.eep.suasaudego.entities.dtos.MedicoDTO;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import com.eep.suasaudego.entities.Medico;
 
-import java.util.ArrayList;
-import java.util.List;
+public class MedicoDTO {
 
-@Entity
-public class Medico {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
-    @Column(unique = true)
     private String email;
-    @Column(unique = true)
     private String crm;
 
-    @JsonIgnore
-    @ManyToMany
-    private List<Unidade> unidade = new ArrayList<>();
-
-    public Medico(){
+    public MedicoDTO(){
 
     }
 
-    public Medico(Integer id, String nome, String email, String crm) {
+    public MedicoDTO(Integer id, String nome, String email, String crm) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.crm = crm;
     }
 
-    public Medico(MedicoDTO medico){
+    public MedicoDTO(Medico medico){
         this.id = medico.getId();
         this.nome = medico.getNome();
         this.email = medico.getEmail();

@@ -5,6 +5,7 @@ import { AuthUtils } from 'app/core/auth/auth.utils';
 import { UserService } from 'app/core/user/user.service';
 import { Pessoa } from 'app/models/pessoa';
 import { API_CONFIG } from 'app/config/API_CONFIG';
+import { Usuario } from 'app/models/usuario';
 
 @Injectable()
 export class AuthService
@@ -148,9 +149,15 @@ export class AuthService
         return of(true);
     }
 
-    signUp(user: Pessoa): Observable<any>
+    signUp(pessoa: Pessoa): Observable<any>
     {
-        return this._httpClient.post(`${API_CONFIG.baseUrl}/pessoa`, user);
+        return this._httpClient.post(`${API_CONFIG.baseUrl}/pessoa`, pessoa);
+    }
+
+    signUpUser(user: Usuario):Observable<any>
+    {
+        return this._httpClient.post(`${API_CONFIG.baseUrl}/usuario`, user);
+
     }
 
     /**
