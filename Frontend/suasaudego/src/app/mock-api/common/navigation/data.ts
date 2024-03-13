@@ -17,6 +17,20 @@ export const compactNavigation: FuseNavigationItem[] = [
         type : 'basic',
         icon : 'heroicons_outline:chart-pie',
         link : '/example'
+    },
+    {
+        id   : 'medico',
+        title: 'Médico',
+        type : 'basic',
+        icon : 'heroicons_outline:chart-pie',
+        link : '/medico'
+    },
+    {
+        id   : 'unidade',
+        title: 'Unidade',
+        type : 'basic',
+        icon : 'heroicons_outline:chart-pie',
+        link : '/unidade'
     }
 ];
 export const futuristicNavigation: FuseNavigationItem[] = [

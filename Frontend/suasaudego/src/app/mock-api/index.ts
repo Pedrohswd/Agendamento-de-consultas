@@ -16,7 +16,6 @@ import { NavigationMockApi } from 'app/mock-api/common/navigation/api';
 import { NotesMockApi } from 'app/mock-api/apps/notes/api';
 import { NotificationsMockApi } from 'app/mock-api/common/notifications/api';
 import { ProjectMockApi } from 'app/mock-api/dashboards/project/api';
-import { SearchMockApi } from 'app/mock-api/common/search/api';
 import { ScrumboardMockApi } from 'app/mock-api/apps/scrumboard/api';
 import { ShortcutsMockApi } from 'app/mock-api/common/shortcuts/api';
 import { TasksMockApi } from 'app/mock-api/apps/tasks/api';
@@ -41,7 +40,6 @@ export const mockApiServices = [
     NotesMockApi,
     NotificationsMockApi,
     ProjectMockApi,
-    SearchMockApi,
     ScrumboardMockApi,
     ShortcutsMockApi,
     TasksMockApi,
