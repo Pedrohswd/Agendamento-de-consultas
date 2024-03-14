@@ -11,44 +11,31 @@ import { mockApiServices } from 'app/mock-api';
 import { LayoutModule } from 'app/layout/layout.module';
 import { AppComponent } from 'app/app.component';
 import { appRoutes } from 'app/app.routing';
-import { MedicoCreateComponent } from './modules/medico/medico-create/medico-create.component';
-import { MedicoListComponent } from './modules/medico/medico-list/medico-list.component';
-import { MedicoUpdateComponent } from './modules/medico/medico-update/medico-update.component';
-import { UnidadeCreateComponent } from './modules/unidade/unidade-create/unidade-create.component';
-import { UnidadeListComponent } from './modules/unidade/unidade-list/unidade-list.component';
-import { UnidadeUpdateComponent } from './modules/unidade/unidade-update/unidade-update.component';
-import { FuncionarioCreateComponent } from './modules/usuario/funcionario/funcionario-create/funcionario-create.component';
-import { FuncionarioListComponent } from './modules/usuario/funcionario/funcionario-list/funcionario-list.component';
-import { FuncionarioUpdateComponent } from './modules/usuario/funcionario/funcionario-update/funcionario-update.component';
-import { AdministradorCreateComponent } from './modules/usuario/adm/administrador-create/administrador-create.component';
-import { AdministradorListComponent } from './modules/usuario/adm/administrador-list/administrador-list.component';
-import { AdministradorUpdateComponent } from './modules/usuario/adm/administrador-update/administrador-update.component';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table'
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 const routerConfig: ExtraOptions = {
-    preloadingStrategy       : PreloadAllModules,
+    preloadingStrategy: PreloadAllModules,
     scrollPositionRestoration: 'enabled'
 };
 
 @NgModule({
     declarations: [
-        AppComponent,
-        MedicoCreateComponent,
-        MedicoListComponent,
-        MedicoUpdateComponent,
-        UnidadeCreateComponent,
-        UnidadeListComponent,
-        UnidadeUpdateComponent,
-        FuncionarioCreateComponent,
-        FuncionarioListComponent,
-        FuncionarioUpdateComponent,
-        AdministradorCreateComponent,
-        AdministradorListComponent,
-        AdministradorUpdateComponent
+        AppComponent
     ],
-    imports     : [
+    imports: [
         BrowserModule,
         BrowserAnimationsModule,
         RouterModule.forRoot(appRoutes, routerConfig),
+
+        MatTableModule,
+        MatPaginatorModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
 
         // Fuse, FuseConfig & FuseMockAPI
         FuseModule,
@@ -61,10 +48,9 @@ const routerConfig: ExtraOptions = {
         // Layout module of your application
         LayoutModule
     ],
-    bootstrap   : [
+    bootstrap: [
         AppComponent
     ]
 })
-export class AppModule
-{
+export class AppModule {
 }
