@@ -16,6 +16,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import {MatStepperModule} from '@angular/material/stepper';
 
 const routerConfig: ExtraOptions = {
     preloadingStrategy: PreloadAllModules,
@@ -36,6 +37,7 @@ const routerConfig: ExtraOptions = {
         MatFormFieldModule,
         MatInputModule,
         MatButtonModule,
+        MatStepperModule,
 
         // Fuse, FuseConfig & FuseMockAPI
         FuseModule,

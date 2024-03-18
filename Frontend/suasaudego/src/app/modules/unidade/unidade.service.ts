@@ -15,4 +15,8 @@ export class UnidadeService {
   findAll(): Observable<Unidade[]> {
     return this._httpClient.get<Unidade[]>(`${API_CONFIG.baseUrl}/unidade`);
   }
+
+  create(unidade: Unidade): Observable<Unidade> {
+    return this._httpClient.post<Unidade>(`${API_CONFIG.baseUrl}/unidade`, unidade);
+  }
 }
