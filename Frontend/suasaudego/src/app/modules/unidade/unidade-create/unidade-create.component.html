@@ -1,32 +1,29 @@
 <div class=" bg-white items-center p-4 m-auto w-1/4 mat-elevation-z8 ">
 
-
     <mat-stepper class="w-full pr-4" [linear]="isLinear" #stepper>
         <mat-step>
-            <form>
+            <form
+            [formGroup]="unidadeForm">
                 <ng-template matStepLabel>Cadastro</ng-template>
                 <mat-form-field class="w-full">
                     <mat-label>Nome da unidade</mat-label>
-                    <input required="Campo nome é requerido" id="nome" matInput [(ngModel)]="unidade.nome"
-                        [formControlName]="'nome'" [formControl]="nome">
+                    <input required="Campo nome é requerido" id="nome" matInput
+                        formControlName="nome">
                 </mat-form-field>
 
                 <mat-form-field class="w-full">
                     <mat-label>Gestão</mat-label>
-                    <input id="gestao" required matInput [(ngModel)]="unidade.gestao" [formControlName]="'gestao'"
-                        [formControl]="gestao" [(ngModel)]="unidade.gestao">
+                    <input id="gestao" required matInput formControlName="gestao">
                 </mat-form-field>
 
                 <mat-form-field class="w-full">
                     <mat-label>CNPJ</mat-label>
-                    <input id="cnpj" matInput [(ngModel)]="unidade.cnpj" [formControlName]="'cnpj'"
-                        [formControl]="cnpj">
+                    <input id="cnpj" matInput formControlName="cnpj">
                 </mat-form-field>
 
                 <mat-form-field class="w-full">
                     <mat-label>CNES</mat-label>
-                    <input id="cnes" required matInput [(ngModel)]="unidade.cnes" [formControlName]="'cnes'"
-                        [formControl]="cnes">
+                    <input id="cnes" required matInput formControlName="cnes">
                 </mat-form-field>
 
 
@@ -36,38 +33,39 @@
             </form>
         </mat-step>
         <mat-step label="Endereço">
-            <form>
+            <form 
+            [formGroup]="unidadeFormEnd">
                 <mat-form-field class="w-full">
                     <mat-label>Rua</mat-label>
-                    <input id="rua" required matInput [(ngModel)]="unidade.endereco.rua" [formControl]="rua">
+                    <input id="rua" required matInput [formControl]="'rua'">
                 </mat-form-field>
 
                 <mat-form-field class="w-full">
                     <mat-label>Bairro</mat-label>
-                    <input id="bairro" required matInput [formControlName]="'bairro'">
+                    <input id="bairro" required matInput >
                 </mat-form-field>
 
                 <mat-form-field class="w-full">
                     <mat-label>Complemento</mat-label>
-                    <input id="complemento" matInput [(ngModel)]="unidade.endereco.complemento"
+                    <input id="complemento" matInput
                         [formControlName]="'complemento'">
                 </mat-form-field>
 
                 <mat-form-field class="w-full">
                     <mat-label>Número</mat-label>
-                    <input id="numero" required matInput [(ngModel)]="unidade.endereco.numero"
-                        [formControlName]="'numero'" [formControl]="numero">
+                    <input id="numero" required matInput
+                        [formControlName]="'numero'">
                 </mat-form-field>
 
                 <mat-form-field class="w-full">
                     <mat-label>CEP</mat-label>
-                    <input id="cep" required matInput [(ngModel)]="unidade.endereco.cep" [formControlName]="'cep'"
-                        [formControlName]="'cep'" [formControl]="cep">
+                    <input id="cep" required matInput [formControlName]="'cep'"
+                        >
                 </mat-form-field>
 
                 <mat-form-field class="w-full">
                     <mat-label>Cidade</mat-label>
-                    <input id="cidade" required matInput [(ngModel)]="unidade.endereco.cidade" [formControl]="cidade">
+                    <input id="cidade" required matInput [formControl]="'cidade'">
                 </mat-form-field>
 
                 <div>
@@ -78,9 +76,15 @@
     </mat-stepper>
 
     <button class="p-4 m-auto fuse-mat-button-large w-full mt-6" mat-flat-button [color]="'primary'" (click)="create()"
-        [disabled]="!validaCampos()">
+        >
         <span>
             Cadastre-se
+        </span>
+    </button>
+    <button routerLink="../" class="p-4 m-auto fuse-mat-button-large w-full mt-6" mat-flat-button [color]="'warn'"
+        >
+        <span>
+            Voltar
         </span>
     </button>
 
