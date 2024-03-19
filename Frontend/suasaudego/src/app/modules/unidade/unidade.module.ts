@@ -28,7 +28,7 @@ const unidadeRoutes: Route[] = [
     component: UnidadeCreateComponent
   },
   {
-    path: 'alterar',
+    path: 'alterar/:cnes',
     component: UnidadeUpdateComponent
   }
 ];

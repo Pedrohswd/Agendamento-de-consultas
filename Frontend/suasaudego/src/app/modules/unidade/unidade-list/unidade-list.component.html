@@ -37,7 +37,10 @@
                 <!-- Fruit Column -->
                 <ng-container matColumnDef="acoes">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header class="px-4 py-2"> Ações </th>
-                    <td mat-cell *matCellDef="let row" class="px-4 py-2"> {{row.acoes}} </td>
+                    <td mat-cell *matCellDef="let element"><a routerLink="alterar/{{element.cnes}}">
+                            <i class="material-icons edit">edit</i>
+                        </a>
+                    </td>
                 </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
