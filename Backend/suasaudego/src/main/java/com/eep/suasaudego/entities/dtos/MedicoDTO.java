@@ -6,24 +6,21 @@ public class MedicoDTO {
 
     private Integer id;
     private String nome;
-    private String email;
     private String crm;
 
     public MedicoDTO(){
 
     }
 
-    public MedicoDTO(Integer id, String nome, String email, String crm) {
+    public MedicoDTO(Integer id, String nome, String crm) {
         this.id = id;
         this.nome = nome;
-        this.email = email;
         this.crm = crm;
     }
 
     public MedicoDTO(Medico medico){
         this.id = medico.getId();
         this.nome = medico.getNome();
-        this.email = medico.getEmail();
         this.crm = medico.getCrm();
     }
 
@@ -41,14 +38,6 @@ public class MedicoDTO {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getCrm() {

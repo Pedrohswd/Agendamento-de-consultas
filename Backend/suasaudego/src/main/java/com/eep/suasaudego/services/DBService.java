@@ -1,15 +1,9 @@
 package com.eep.suasaudego.services;
 
-import com.eep.suasaudego.entities.Endereco;
-import com.eep.suasaudego.entities.Pessoa;
-import com.eep.suasaudego.entities.Unidade;
-import com.eep.suasaudego.entities.Usuario;
+import com.eep.suasaudego.entities.*;
 import com.eep.suasaudego.entities.enums.Perfil;
 import com.eep.suasaudego.entities.enums.Sexo;
-import com.eep.suasaudego.repositories.EnderecoRepository;
-import com.eep.suasaudego.repositories.PessoaRepository;
-import com.eep.suasaudego.repositories.UnidadeRepository;
-import com.eep.suasaudego.repositories.UsuarioRepository;
+import com.eep.suasaudego.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +23,10 @@ public class DBService {
 
     @Autowired
     private UnidadeRepository unidadeRepository;
+
+    @Autowired
+    private MedicoRepository medicoRepository;
+
   
     public void instanciaDB() {
         Pessoa p1 = new Pessoa(null, "Pedro Henrique", "040.198.751-54", "19/12/2003", 0);
@@ -52,7 +50,10 @@ public class DBService {
         u2.setPessoa(p1);
         u2.addPerfil(Perfil.ADMIN);
 
+        Medico md1 = new Medico(null, "Eduardo","88821");
 
+
+        medicoRepository.save(md1);
         pessoaRepository.save(p1);
 
         unidadeRepository.save(uni1);

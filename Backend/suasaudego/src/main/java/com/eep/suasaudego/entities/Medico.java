@@ -14,8 +14,6 @@ public class Medico {
     private Integer id;
     private String nome;
     @Column(unique = true)
-    private String email;
-    @Column(unique = true)
     private String crm;
 
     @JsonIgnore
@@ -26,17 +24,15 @@ public class Medico {
 
     }
 
-    public Medico(Integer id, String nome, String email, String crm) {
+    public Medico(Integer id, String nome, String crm) {
         this.id = id;
         this.nome = nome;
-        this.email = email;
         this.crm = crm;
     }
 
     public Medico(MedicoDTO medico){
         this.id = medico.getId();
         this.nome = medico.getNome();
-        this.email = medico.getEmail();
         this.crm = medico.getCrm();
     }
 
@@ -54,14 +50,6 @@ public class Medico {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getCrm() {
