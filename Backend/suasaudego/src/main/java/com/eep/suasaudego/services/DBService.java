@@ -50,7 +50,7 @@ public class DBService {
         u2.setPessoa(p1);
         u2.addPerfil(Perfil.ADMIN);
 
-        Medico md1 = new Medico(null, "Eduardo","88821");
+        Medico md1 = new Medico(null, "Eduardo","88821","2001-08-03");
 
 
         medicoRepository.save(md1);
