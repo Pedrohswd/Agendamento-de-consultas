@@ -1,6 +1,5 @@
 package com.eep.suasaudego.entities;
 
-
 import com.eep.suasaudego.entities.dtos.UnidadeDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;

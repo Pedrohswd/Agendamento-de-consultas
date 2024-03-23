@@ -26,6 +26,7 @@ public class Endereco {
     @JoinColumn(name = "unidade_id", referencedColumnName = "id")
     private Unidade unidade;
   
+
     public Endereco() {
     }
 
@@ -111,6 +112,7 @@ public class Endereco {
     public void setUnidade(Unidade unidade) {
         this.unidade = unidade;
     }
+
     public Pessoa getPessoa() {
         return pessoa;
     }

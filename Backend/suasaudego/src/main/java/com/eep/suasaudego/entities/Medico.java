@@ -39,6 +39,13 @@ public class Medico {
         this.dt_nascimento = medico.getDt_nascimento();
     }
 
+    public Medico(MedicoDTO medico){
+        this.id = medico.getId();
+        this.nome = medico.getNome();
+        this.email = medico.getEmail();
+        this.crm = medico.getCrm();
+    }
+
     public Integer getId() {
         return id;
     }

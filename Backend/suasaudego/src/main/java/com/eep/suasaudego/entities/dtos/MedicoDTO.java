@@ -51,7 +51,11 @@ public class MedicoDTO {
         this.crm = crm;
     }
 
-    public String getDt_nascimento() { return dt_nascimento; }
+    public String getDt_nascimento() {
+        return dt_nascimento;
+    }
 
-    public void setDt_nascimento(String dt_nascimento) { this.dt_nascimento = dt_nascimento; }
+    public void setDt_nascimento(String dt_nascimento) {
+        this.dt_nascimento = dt_nascimento;
+    }
 }
