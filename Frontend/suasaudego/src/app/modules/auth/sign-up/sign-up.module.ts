@@ -31,7 +31,6 @@ import { authSignupRoutes } from 'app/modules/auth/sign-up/sign-up.routing';
         FuseAlertModule,
         SharedModule,
         MatStepperModule,
-        MatRadioModule,
         MatRadioModule
     ]
 })

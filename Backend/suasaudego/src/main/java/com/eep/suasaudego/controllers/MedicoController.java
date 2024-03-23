@@ -14,7 +14,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping(value = "/pessoa")
+
+@RequestMapping(value = "/medico")
 @CrossOrigin(origins = "http://localhost:4200")
 public class MedicoController {
     @Autowired

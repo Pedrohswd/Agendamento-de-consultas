@@ -1,0 +1,29 @@
+<div class=" bg-white items-center p-4 m-auto w-1/4 mat-elevation-z8 ">
+    <form [formGroup]="medicoForm">
+        <ng-template matStepLabel>Cadastro</ng-template>
+        <mat-form-field class="w-full">
+            <mat-label>Nome do médico</mat-label>
+            <input required="Campo nome é requerido" id="nome" matInput formControlName="nome">
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>CRM</mat-label>
+            <input id="crm" required matInput formControlName="crm">
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Data de nascimento</mat-label>
+            <input id="dt_nascimento" matInput type="date" formControlName="dt_nascimento">
+        </mat-form-field>
+    </form>
+    <button class="p-4 m-auto fuse-mat-button-large w-full mt-6" mat-flat-button [color]="'primary'" (click)="create()">
+        <span>
+            Cadastrar
+        </span>
+    </button>
+    <button routerLink="../" class="p-4 m-auto fuse-mat-button-large w-full mt-6" mat-flat-button [color]="'warn'">
+        <span>
+            Voltar
+        </span>
+    </button>
+</div>

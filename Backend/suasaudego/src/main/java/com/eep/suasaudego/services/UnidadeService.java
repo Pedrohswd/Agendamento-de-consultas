@@ -47,4 +47,10 @@ public class UnidadeService {
         Optional<Unidade> obj = repository.findById(id);
         return obj.orElseThrow();
     }
+
+    public Unidade findByCNES(String cnes) {
+        Optional<Unidade> obj = repository.findByCNES(cnes);
+        return obj.orElseThrow();
+    }
+
 }

@@ -25,7 +25,7 @@ public class Endereco {
     @OneToOne
     @JoinColumn(name = "unidade_id", referencedColumnName = "id")
     private Unidade unidade;
-
+  
 
     public Endereco() {
     }

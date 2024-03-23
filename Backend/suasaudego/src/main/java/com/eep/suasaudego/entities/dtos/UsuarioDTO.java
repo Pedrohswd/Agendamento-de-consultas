@@ -37,7 +37,6 @@ public class UsuarioDTO {
         this.perfil = usuario.getPerfis().getCodigo();
         this.cpf = usuario.getPessoa().getCpf();
         //this.cnes = usuario.getUnidade().getCNES();
-
     }
 
     public Integer getId() {

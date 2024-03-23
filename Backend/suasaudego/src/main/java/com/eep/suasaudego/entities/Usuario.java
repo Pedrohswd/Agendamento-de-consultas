@@ -25,6 +25,7 @@ public class Usuario {
     @CollectionTable(name = "PERFIS")
     private Perfil perfil;
 
+
     public Usuario() {
     }
 
