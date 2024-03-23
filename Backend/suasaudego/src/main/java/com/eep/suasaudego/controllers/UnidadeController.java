@@ -26,6 +26,12 @@ public class UnidadeController {
         return ResponseEntity.ok().body(new UnidadeDTO(obj));
     }
 
+    @GetMapping(value = "/cnes/{cnes}")
+    public ResponseEntity<UnidadeDTO> findById(@PathVariable String cnes) {
+        Unidade obj = service.findByCNES(cnes);
+        return ResponseEntity.ok().body(new UnidadeDTO(obj));
+    }
+
     @GetMapping
     public ResponseEntity<List<UnidadeDTO>> findAll() {
         List<Unidade> list = service.findAll();

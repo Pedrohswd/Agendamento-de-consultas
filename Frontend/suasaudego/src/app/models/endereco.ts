@@ -8,11 +8,12 @@ export class Endereco {
     cidade: string;
     cep: string;
 
-    constructor(unidadeFormEnd: FormGroup){
-        this.rua = unidadeFormEnd.value.rua;
-        this.numero = unidadeFormEnd.value.numero;
-        this.complemento = unidadeFormEnd.value.complemento;
-        this.cidade = unidadeFormEnd.value.cidade;
-        this.cep = unidadeFormEnd.value.cep;
+    constructor(enderecoForm: FormGroup){
+        this.id = enderecoForm.value.id;
+        this.rua = enderecoForm.value.rua;
+        this.numero = enderecoForm.value.numero;
+        this.complemento = enderecoForm.value.complemento;
+        this.cidade = enderecoForm.value.cidade;
+        this.cep = enderecoForm.value.cep;
     }
 }

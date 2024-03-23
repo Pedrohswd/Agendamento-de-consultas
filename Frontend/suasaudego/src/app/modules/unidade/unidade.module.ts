@@ -17,6 +17,7 @@ import { FuseCardModule } from '@fuse/components/card';
 import { FuseAlertModule } from '@fuse/components/alert';
 import { SharedModule } from 'app/shared/shared.module';
 import { MatRadioModule } from '@angular/material/radio';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const unidadeRoutes: Route[] = [
   {
@@ -54,7 +55,8 @@ const unidadeRoutes: Route[] = [
     FuseAlertModule,
     SharedModule,
     MatRadioModule,
-    RouterModule.forChild(unidadeRoutes)
+    RouterModule.forChild(unidadeRoutes),
+    ReactiveFormsModule
   ]
 })
 export class UnidadeModule { }

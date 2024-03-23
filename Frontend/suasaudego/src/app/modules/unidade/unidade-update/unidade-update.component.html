@@ -1,1 +1,115 @@
-<p>unidade-update works!</p>
+<div class="bg-white items-center p-4 m-auto w-1/4 mat-elevation-z8">
+    <mat-stepper class="w-full pr-4" [linear]="isLinear" #stepper>
+        <mat-step>
+            <form [formGroup]="unidadeForm">
+                <ng-template matStepLabel>Cadastro</ng-template>
+                <mat-form-field class="w-full">
+                    <mat-label>Nome da unidade</mat-label>
+                    <input
+                        required
+                        matInput
+                        formControlName="nome"
+                        id="nomes"
+                    />
+                </mat-form-field>
+
+                <mat-form-field class="w-full">
+                    <mat-label>Gestão</mat-label>
+                    <input
+                        required
+                        matInput
+                        formControlName="gestao"
+                        id="gestao"
+                    />
+                </mat-form-field>
+
+                <mat-form-field class="w-full">
+                    <mat-label>CNPJ</mat-label>
+                    <input matInput formControlName="cnpj" id="cnpj" />
+                </mat-form-field>
+
+                <mat-form-field class="w-full">
+                    <mat-label>CNES</mat-label>
+                    <input required matInput formControlName="cnes" id="cnes" />
+                </mat-form-field>
+
+                <div>
+                    <button mat-button matStepperNext>Avançar</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step label="Endereço">
+            <form [formGroup]="unidadeFormEnd">
+                <mat-form-field class="w-full">
+                    <mat-label>Rua</mat-label>
+                    <input required matInput formControlName="rua" id="rua" />
+                </mat-form-field>
+
+                <mat-form-field class="w-full">
+                    <mat-label>Bairro</mat-label>
+                    <input
+                        required
+                        matInput
+                        formControlName="bairro"
+                        id="bairro"
+                    />
+                </mat-form-field>
+
+                <mat-form-field class="w-full">
+                    <mat-label>Complemento</mat-label>
+                    <input
+                        matInput
+                        formControlName="complemento"
+                        id="complemento"
+                    />
+                </mat-form-field>
+
+                <mat-form-field class="w-full">
+                    <mat-label>Número</mat-label>
+                    <input
+                        required
+                        matInput
+                        formControlName="numero"
+                        id="numero"
+                    />
+                </mat-form-field>
+
+                <mat-form-field class="w-full">
+                    <mat-label>CEP</mat-label>
+                    <input required matInput formControlName="cep" id="cep" />
+                </mat-form-field>
+
+                <mat-form-field class="w-full">
+                    <mat-label>Cidade</mat-label>
+                    <input
+                        required
+                        matInput
+                        formControlName="cidade"
+                        id="cidade"
+                    />
+                </mat-form-field>
+
+                <div>
+                    <button mat-button matStepperPrevious>Voltar</button>
+                </div>
+            </form>
+        </mat-step>
+    </mat-stepper>
+
+    <button
+        class="p-4 m-auto fuse-mat-button-large w-full mt-6"
+        mat-flat-button
+        color="primary"
+        (click)="update()"
+    >
+        <span>Atualizar</span>
+    </button>
+    <button
+        routerLink="../../"
+        class="p-4 m-auto fuse-mat-button-large w-full mt-6"
+        mat-flat-button
+        color="warn"
+    >
+        <span>Voltar</span>
+    </button>
+</div>

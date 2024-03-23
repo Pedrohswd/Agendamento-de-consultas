@@ -27,33 +27,32 @@ export class UnidadeCreateComponent implements OnInit {
         private router: Router,
         private FormBuilder: FormBuilder
     ) {
+        this.unidadeForm = this.FormBuilder.group({
+            nome: [null, Validators.required],
+            gestao: [null, Validators.required],
+            cnpj: [null],
+            cnes: [null, Validators.required],
+        });
+        this.unidadeFormEnd = this.FormBuilder.group({
+            rua: [null, Validators.required],
+            numero: [null, Validators.required],
+            complemento: [null],
+            cidade: [null, Validators.required],
+            cep: [null, Validators.required],
+        });
     }
 
-    ngOnInit(): void {
-      this.unidadeForm = this.FormBuilder.group({
-        nome: [null, Validators.required],
-        gestao: [null, Validators.required],
-        cnpj: [null],
-        cnes: [null, Validators.required],
-    });
-    this.unidadeFormEnd = this.FormBuilder.group({
-        rua: [null, Validators.required],
-        numero: [null, Validators.required],
-        complemento: [null],
-        cidade: [null, Validators.required],
-        cep: [null, Validators.required],
-    });
-    }
+    ngOnInit(): void {}
 
-    isValid(): boolean{
-      return this.unidadeForm.valid && this.unidadeFormEnd.valid
+    isValid(): boolean {
+        return this.unidadeForm.valid && this.unidadeFormEnd.valid;
     }
 
     create(): void {
         this.service.create(this.unidadeForm, this.unidadeFormEnd).subscribe(
             (resposta) => {
                 //this.toast.success('Unidade cadastrada com sucesso', 'Cadastro');
-                this.router.navigate(["unidade"]);
+                this.router.navigate(['unidade']);
             },
             (ex) => {
                 if (ex.error.errors) {
