@@ -1,38 +1,31 @@
-package com.eep.suasaudego.entities;
+package com.eep.suasaudego.entities.dtos;
 
-import com.eep.suasaudego.entities.dtos.ConsultaDTO;
+import com.eep.suasaudego.entities.Agendamento;
+import com.eep.suasaudego.entities.Consulta;
+import com.eep.suasaudego.entities.Medico;
+import com.eep.suasaudego.entities.Unidade;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
-import java.util.*;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-@Entity
-public class Consulta {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ConsultaDTO {
+
     private Integer id;
-    @ManyToOne
-    @JoinColumn(name = "unidade_id")
     private Unidade unidade;
-    @JsonFormat(pattern = "dd/MM/yyyy")
     private String date;
-
     private String especialidade;
-
     private String observacao;
-
-    @ManyToOne
-    @JoinColumn(name = "medico_id")
     private Medico medico;
-    @JsonIgnore
-    @OneToMany(mappedBy = "consulta")
-    private Set<Agendamento> agendamentos = new HashSet<>();
 
-    public Consulta() {
+    public ConsultaDTO() {
     }
 
-    public Consulta(Integer id, Unidade unidade, String date, String especialidade, String observacao, Medico medico) {
+    public ConsultaDTO(Integer id, Unidade unidade, String date, String especialidade, String observacao,Medico medico) {
         this.id = id;
         this.unidade = unidade;
         this.date = date;
@@ -41,7 +34,7 @@ public class Consulta {
         this.medico = medico;
     }
 
-    public Consulta(ConsultaDTO consulta){
+    public ConsultaDTO(Consulta consulta){
         this.id = consulta.getId();
         this.unidade = consulta.getUnidade();
         this.date = consulta.getDate();
@@ -78,10 +71,6 @@ public class Consulta {
         return medico;
     }
 
-    public void setMedico(Medico medico) {
-        this.medico = medico;
-    }
-
     public String getEspecialidade() {
         return especialidade;
     }
@@ -98,11 +87,7 @@ public class Consulta {
         this.observacao = observacao;
     }
 
-    public Set<Agendamento> getAgendamentos() {
-        return agendamentos;
-    }
-
-    public void setAgendamentos(Agendamento agendamento) {
-        this.agendamentos.add(agendamento);
+    public void setMedico(Medico medico) {
+        this.medico = medico;
     }
 }
