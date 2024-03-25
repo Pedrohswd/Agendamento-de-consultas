@@ -62,7 +62,7 @@ public class Medico {
     public void setCrm(String crm) {
         this.crm = crm;
     }
-
+  
     public String getDataNascimento() {return dataNascimento;}
     public void setDataNascimento(String dataNascimento) { this.dataNascimento = dataNascimento; }
 

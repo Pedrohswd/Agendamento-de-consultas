@@ -25,6 +25,7 @@ public class MedicoDTO {
         this.nome = medico.getNome();
         this.crm = medico.getCrm();
         this.dataNascimento = medico.getDataNascimento();
+
     }
 
     public Integer getId() {

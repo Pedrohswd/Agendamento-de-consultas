@@ -29,6 +29,7 @@ public class DBService {
 
     @Autowired
     private ConsultaRepository consultaRepository;
+
   
     public void instanciaDB() {
         Pessoa p1 = new Pessoa(null, "Pedro Henrique", "040.198.751-54", "19/12/2003", 0);
@@ -53,7 +54,6 @@ public class DBService {
         Medico md1 = new Medico(null, "Eduardo","88821","2001-08-03");
 
         Consulta c1 = new Consulta(null, uni1, "11/04/2024","Cardiologia", "13h", md1);
-
 
         medicoRepository.save(md1);
         pessoaRepository.save(p1);
