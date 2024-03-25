@@ -7,24 +7,25 @@ public class MedicoDTO {
     private Integer id;
     private String nome;
     private String crm;
-    private String dt_nascimento;
+    private String dataNascimento;
 
     public MedicoDTO(){
 
     }
 
-    public MedicoDTO(Integer id, String nome, String crm, String dt_nascimento) {
+    public MedicoDTO(Integer id, String nome, String crm, String dataNascimento) {
         this.id = id;
         this.nome = nome;
         this.crm = crm;
-        this.dt_nascimento = dt_nascimento;
+        this.dataNascimento = dataNascimento;
     }
 
     public MedicoDTO(Medico medico){
         this.id = medico.getId();
         this.nome = medico.getNome();
         this.crm = medico.getCrm();
-        this.dt_nascimento = medico.getDt_nascimento();
+        this.dataNascimento = medico.getDataNascimento();
+
     }
 
     public Integer getId() {
@@ -51,11 +52,11 @@ public class MedicoDTO {
         this.crm = crm;
     }
 
-    public String getDt_nascimento() {
-        return dt_nascimento;
+    public String getDataNascimento() {
+        return dataNascimento;
     }
 
-    public void setDt_nascimento(String dt_nascimento) {
-        this.dt_nascimento = dt_nascimento;
+    public void setDataNascimento(String dt_nascimento) {
+        this.dataNascimento = dt_nascimento;
     }
 }

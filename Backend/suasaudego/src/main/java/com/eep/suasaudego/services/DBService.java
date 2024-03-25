@@ -26,6 +26,10 @@ public class DBService {
 
     @Autowired
     private MedicoRepository medicoRepository;
+
+    @Autowired
+    private ConsultaRepository consultaRepository;
+
   
     public void instanciaDB() {
         Pessoa p1 = new Pessoa(null, "Pedro Henrique", "040.198.751-54", "19/12/2003", 0);
@@ -40,14 +44,6 @@ public class DBService {
         uni1.setEndereco(ed2);
         ed2.setUnidade(uni1);
 
-
-
-        Unidade uni1 = new Unidade(null,"São Judas",null,"Pública", "012345");
-        Endereco ed2 = new Endereco(null, "Rua botafogo q2 l8", "Nerópolis", "GO", "75463000", "SN", "");
-        uni1.setEndereco(ed2);
-        ed2.setUnidade(uni1);
-
-
         Usuario u1 = new Usuario(null, "pedrohsfwd@gmail.com", "123");
         u1.setPessoa(p1);
         u1.addPerfil(Perfil.PACIENTE);
@@ -57,6 +53,7 @@ public class DBService {
 
         Medico md1 = new Medico(null, "Eduardo","88821","2001-08-03");
 
+        Consulta c1 = new Consulta(null, uni1, "11/04/2024","Cardiologia", "13h", md1);
 
         medicoRepository.save(md1);
         pessoaRepository.save(p1);
@@ -69,5 +66,7 @@ public class DBService {
 
         usuarioRepository.save(u1);
         usuarioRepository.save(u2);
+
+        consultaRepository.save(c1);
     }
 }

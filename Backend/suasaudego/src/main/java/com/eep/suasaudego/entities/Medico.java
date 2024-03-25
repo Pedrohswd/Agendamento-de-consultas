@@ -13,7 +13,7 @@ public class Medico {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
-    private String dt_nascimento;
+    private String dataNascimento;
     @Column(unique = true)
     private String crm;
 
@@ -29,21 +29,14 @@ public class Medico {
         this.id = id;
         this.nome = nome;
         this.crm = crm;
-        this.dt_nascimento = dt_nascimento;
+        this.dataNascimento = dt_nascimento;
     }
 
     public Medico(MedicoDTO medico){
         this.id = medico.getId();
         this.nome = medico.getNome();
         this.crm = medico.getCrm();
-        this.dt_nascimento = medico.getDt_nascimento();
-    }
-
-    public Medico(MedicoDTO medico){
-        this.id = medico.getId();
-        this.nome = medico.getNome();
-        this.email = medico.getEmail();
-        this.crm = medico.getCrm();
+        this.dataNascimento = medico.getDataNascimento();
     }
 
     public Integer getId() {
@@ -69,8 +62,8 @@ public class Medico {
     public void setCrm(String crm) {
         this.crm = crm;
     }
-
-    public String getDt_nascimento() {return dt_nascimento;}
-    public void setDt_nascimento(String dt_nascimento) { this.dt_nascimento = dt_nascimento; }
+  
+    public String getDataNascimento() {return dataNascimento;}
+    public void setDataNascimento(String dataNascimento) { this.dataNascimento = dataNascimento; }
 
 }
