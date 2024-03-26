@@ -13,7 +13,7 @@ export class UnidadeService {
         Unidade[]
     >(null);
 
-    constructor(private _httpClient: HttpClient) {}
+    constructor(private _httpClient: HttpClient) { }
 
     get unidade$(): Observable<Unidade[]> {
         return this._unidades.asObservable();
@@ -43,22 +43,14 @@ export class UnidadeService {
             );
     }
 
-    create(
-        unidadeForm: FormGroup,
-        unidadeFormEnd: FormGroup
-    ): Observable<Unidade> {
-        const unidade = new Unidade(unidadeForm, unidadeFormEnd);
+    create(unidade: Unidade): Observable<Unidade> {
         return this._httpClient.post<Unidade>(
             `${API_CONFIG.baseUrl}/unidade`,
             unidade
         );
     }
 
-    update(
-        unidadeForm: FormGroup,
-        unidadeFormEnd: FormGroup
-    ): Observable<Unidade> {
-        const unidade = new Unidade(unidadeForm, unidadeFormEnd);
+    update(unidade: Unidade): Observable<Unidade> {
         return this._httpClient.put<Unidade>(
             `${API_CONFIG.baseUrl}/unidade/${unidade.id}`,
             unidade

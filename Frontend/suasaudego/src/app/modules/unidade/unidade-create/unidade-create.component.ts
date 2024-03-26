@@ -49,7 +49,8 @@ export class UnidadeCreateComponent implements OnInit {
     }
 
     create(): void {
-        this.service.create(this.unidadeForm, this.unidadeFormEnd).subscribe(
+        const unidade = new Unidade(this.unidadeForm, this.unidadeFormEnd);
+        this.service.create(unidade).subscribe(
             (resposta) => {
                 //this.toast.success('Unidade cadastrada com sucesso', 'Cadastro');
                 this.router.navigate(['unidade']);

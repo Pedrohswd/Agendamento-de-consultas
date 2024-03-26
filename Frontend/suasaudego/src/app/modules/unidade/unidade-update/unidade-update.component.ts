@@ -66,7 +66,8 @@ export class UnidadeUpdateComponent implements OnInit {
     }
 
     update(): void{
-        this.service.update(this.unidadeForm, this.unidadeFormEnd).subscribe(
+        const unidade = new Unidade(this.unidadeForm, this.unidadeFormEnd);
+        this.service.update(unidade).subscribe(
             (resposta) => {
                 //this.toast.success('Unidade cadastrada com sucesso', 'Cadastro');
                 this._router.navigate(["unidade"]);
