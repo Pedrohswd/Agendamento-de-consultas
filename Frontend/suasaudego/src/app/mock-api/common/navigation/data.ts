@@ -31,6 +31,13 @@ export const compactNavigation: FuseNavigationItem[] = [
         type: 'basic',
         icon: 'heroicons_solid:building-storefront',
         link: '/unidade'
+    },
+    {
+        id: 'usuario',
+        title: 'Usuários',
+        type: 'basic',
+        icon: 'heroicons_outline:user',
+        link: '/usuario'
     }
 ];
 export const futuristicNavigation: FuseNavigationItem[] = [

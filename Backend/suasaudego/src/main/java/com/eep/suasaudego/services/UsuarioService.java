@@ -8,6 +8,7 @@ import com.eep.suasaudego.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -42,5 +43,10 @@ public class UsuarioService {
         old.setPessoa(pessoaService.findByCpf(pessoa.getCpf()));
         old = repository.save(old);
         return old;
+    }
+
+    public List<Usuario> findEmployees() {
+        List<Usuario> list = repository.findEmployees();
+        return list;
     }
 }

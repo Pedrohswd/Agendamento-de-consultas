@@ -7,14 +7,6 @@ import { fuseAnimations } from '@fuse/animations';
 import { UnidadeService } from '../unidade.service';
 import { Unidade } from 'app/models/unidade';
 
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  fruit: string;
-}
-
-
 @Component({
   selector: 'app-unidade-list',
   templateUrl: './unidade-list.component.html',

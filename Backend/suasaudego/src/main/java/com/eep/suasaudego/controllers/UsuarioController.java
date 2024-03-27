@@ -1,8 +1,6 @@
 package com.eep.suasaudego.controllers;
 
-import com.eep.suasaudego.entities.Pessoa;
 import com.eep.suasaudego.entities.Usuario;
-import com.eep.suasaudego.entities.dtos.PessoaDTO;
 import com.eep.suasaudego.entities.dtos.UsuarioDTO;
 import com.eep.suasaudego.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(value = "/usuario")
@@ -24,6 +24,14 @@ public class UsuarioController {
     public ResponseEntity<UsuarioDTO> findById(@PathVariable Integer id) {
         Usuario obj = service.findByID(id);
         return ResponseEntity.ok().body(new UsuarioDTO(obj));
+    }
+
+    @GetMapping(value = "/perfis")
+    public ResponseEntity<List<UsuarioDTO>> findEmployees(){
+        List<Usuario> list = service.findEmployees();
+        List<UsuarioDTO> listDTO = list.stream().map(obj -> new UsuarioDTO(obj)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listDTO);
+
     }
 
     @PostMapping
